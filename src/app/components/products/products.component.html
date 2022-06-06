@@ -56,11 +56,14 @@
           {{ item.description }}
         </p>
         <p><strong>Price:</strong> ${{ item.price }}</p>
-        <app-button
+
+        <button
           class="btn"
-          text="Add to cart"
-          (btnClick)="addToCart(item)"
-        ></app-button>
+          id="addToCartButton"
+          (click)="$addToCartButton_click(item)"
+        >
+          {{ AddToCartButton }}
+        </button>
       </div>
     </ng-container>
   </div>

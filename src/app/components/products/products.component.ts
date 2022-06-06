@@ -11,7 +11,7 @@ import { ApiService } from './../../service/api.service';
 })
 export class ProductsComponent implements OnInit {
   public productList: any;
-
+  AddToCartButton:string='Add to cart';
   constructor(
     private apiService: ApiService,
     private cartService: CartService
@@ -26,7 +26,18 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-  addToCart(item: any) {
+  
+
+  $addToCartButton_click(item:any){
     this.cartService.addToCart(item);
+    this.AddToCartButton='Added to cart'
   }
+
+
+
+
+
+//All Public Method goes here
+
+
 }

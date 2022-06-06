@@ -44,6 +44,7 @@
   background-color: rgb(48, 38, 182);
   color: white;
   cursor: pointer;
+  height: 50px;
 }
 .btn:hover {
   background-color: rgb(27, 12, 236);
