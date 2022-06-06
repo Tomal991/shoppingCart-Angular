@@ -8,12 +8,15 @@ import { CartComponent } from './components/cart/cart.component';
 import { ProductsComponent } from './components/products/products.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { ButtonComponent } from './components/button/button.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     CartComponent,
     ProductsComponent,
+    ButtonComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule,FormsModule],
   providers: [],

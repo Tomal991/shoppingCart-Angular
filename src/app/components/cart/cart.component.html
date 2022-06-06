@@ -13,7 +13,12 @@
       <h4>Your cart is empty</h4>
       <h5>Add item to it now</h5>
 
-      <button routerLink="/products" class="btn btn-primary">Shop now</button>
+      <app-button
+        routerLink="/products"
+        text="Shop now"
+        class="btn btn-primary"
+      >
+      </app-button>
     </div>
   </div>
 </ng-container>
@@ -47,13 +52,15 @@
               <td style="width: 12%">
                 <input
                   type="number"
-                  value="{{ item.quantity }}"
+                  min="0"
                   [(ngModel)]="item.quantity"
                   name="quantity"
                   (change)="changeGrandTotal()"
                 />
               </td>
-              <td style="width: 12%">{{ item.quantity * item.price }}</td>
+              <td style="width: 12%">
+                {{ item.quantity * item.price | currency }}
+              </td>
               <td>
                 <button class="btn btn-danger" (click)="removeItem(item)">
                   <i class="fas fa-trash-alt"></i>
@@ -62,20 +69,32 @@
             </tr>
 
             <tr>
-              <td colspan="4"></td>
               <td>
-                <button (click)="emptyCart()" class="btn btn-danger">
-                  Empty Cart
-                </button>
+                <app-button
+                  (btnClick)="emptyCart()"
+                  text="Empty Cart"
+                  class="btn btn-danger"
+                  [isDisabled]="false"
+                ></app-button>
               </td>
               <td>
-                <button routerLink="/products" class="btn btn-primary">
-                  Shop More
-                </button>
+                <app-button
+                  routerLink="/products"
+                  text="Shop More"
+                  class="btn btn-primary"
+                  [isDisabled]="false"
+                >
+                </app-button>
               </td>
-              <td><button class="btn btn-success">Checkout</button></td>
               <td>
-                <strong>Grand Total : ${{ grandTotal }}</strong>
+                <app-button
+                  text="Checkout"
+                  class="btn btn-success"
+                  [isDisabled]="false"
+                ></app-button>
+              </td>
+              <td>
+                <strong>Grand Total : {{ grandTotal | currency }}</strong>
               </td>
             </tr>
           </tbody>
