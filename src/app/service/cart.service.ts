@@ -8,6 +8,7 @@ import { BehaviorSubject } from 'rxjs';
 export class CartService {
   public cartItemList: any = [];
   public productList = new BehaviorSubject<any>([]);
+  public search = new BehaviorSubject<string>('');
 
   constructor(private http: HttpClient) {}
 
@@ -21,10 +22,24 @@ export class CartService {
   // }
 
   addToCart(product: any) {
-    this.cartItemList.push(product);
-    this.productList.next(this.cartItemList);
-    this.getTotalPrice();
-    console.log(this.cartItemList);
+    let productExists = false;
+
+    for (let i in this.cartItemList) {
+      if (this.cartItemList[i].id === product.id) {
+        this.cartItemList[i].quantity++;
+        productExists = true;
+        break;
+      }
+    }
+
+    if (!productExists) {
+      this.cartItemList.push(product);
+
+      this.productList.next(this.cartItemList);
+
+      this.getTotalPrice();
+      console.log(this.cartItemList);
+    }
   }
 
   getTotalPrice(): number {

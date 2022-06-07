@@ -42,7 +42,12 @@
 
 <div class="container">
   <div class="row">
-    <ng-container *ngFor="let item of productList">
+    <ng-container
+      *ngFor="
+        let item of productList | filter: searchKey:'title';
+        let i = index
+      "
+    >
       <div class="card col-md-3">
         <img src="{{ item.image }}" alt="" />
         <h5
@@ -57,13 +62,13 @@
         </p>
         <p><strong>Price:</strong> ${{ item.price }}</p>
 
-        <button
+        <app-button
           class="btn"
-          id="addToCartButton"
-          (click)="$addToCartButton_click(item)"
+          [text]="AddToCartButton"
+          id="`{{ i }}_addToCartButton`"
+          (click)="$AddToCartButton_click(item)"
         >
-          {{ AddToCartButton }}
-        </button>
+        </app-button>
       </div>
     </ng-container>
   </div>

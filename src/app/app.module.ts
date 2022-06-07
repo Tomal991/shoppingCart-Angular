@@ -9,6 +9,7 @@ import { ProductsComponent } from './components/products/products.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ButtonComponent } from './components/button/button.component';
+import { FilterPipe } from './shared/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { ButtonComponent } from './components/button/button.component';
     CartComponent,
     ProductsComponent,
     ButtonComponent,
+    FilterPipe,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule,FormsModule],
   providers: [],

@@ -11,6 +11,7 @@ export class ApiService {
   getProducts() {
     return this.http.get<any>('https://fakestoreapi.com/products').pipe(
       map((res: any) => {
+     
         return res;
       })
     );

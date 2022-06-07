@@ -8,6 +8,8 @@ import { CartService } from 'src/app/service/cart.service';
 })
 export class HeaderComponent implements OnInit {
   totalCartItem: number = 0;
+  searchTerm: string = '';
+  totalAmount: any;
   // count:number=0;
   constructor(private cartService: CartService) {}
 
@@ -15,5 +17,11 @@ export class HeaderComponent implements OnInit {
     this.cartService.getProducts().subscribe((res: any) => {
       this.totalCartItem = res.length;
     });
+  }
+
+  search(event: any) {
+    this.searchTerm = (event.target as HTMLInputElement).value;
+    console.log(this.searchTerm);
+    this.cartService.search.next(this.searchTerm);
   }
 }

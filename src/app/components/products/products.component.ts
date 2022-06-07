@@ -11,7 +11,8 @@ import { ApiService } from './../../service/api.service';
 })
 export class ProductsComponent implements OnInit {
   public productList: any;
-  AddToCartButton:string='Add to cart';
+  searchKey: string = '';
+  AddToCartButton: string = 'Add to cart';
   constructor(
     private apiService: ApiService,
     private cartService: CartService
@@ -24,20 +25,22 @@ export class ProductsComponent implements OnInit {
         Object.assign(a, { quantity: 1, total: a.price });
       });
     });
+    this.cartService.search.subscribe((val) => {
+      this.searchKey = val;
+    });
   }
 
-  
-
-  $addToCartButton_click(item:any){
+  $AddToCartButton_click(item: any) {
+    if(this.AddToCartButton==="Add to cart"){
+      this.AddToCartButton=`added`;
+    }
+    else{
+      this.AddToCartButton="Add to cart"
+    }
+    
     this.cartService.addToCart(item);
-    this.AddToCartButton='Added to cart'
   }
 
 
-
-
-
-//All Public Method goes here
-
-
+  //All Public Method goes here
 }
