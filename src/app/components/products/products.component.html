@@ -1,7 +1,7 @@
 <div class="card-top container-fluid">
   <div class="container d-flex">
     <div class="item">
-      <a>
+      <a (click)="$Filter('')">
         <img
           src="https://rukminim1.flixcart.com/flap/128/128/image/f15c02bfeb02d15d.png?q=100"
           alt=""
@@ -10,7 +10,7 @@
       </a>
     </div>
     <div class="item">
-      <a>
+      <a (click)="$Filter('electronics')">
         <img
           src="https://rukminim1.flixcart.com/flap/128/128/image/69c6589653afdb9a.png?q=100"
           alt=""
@@ -19,7 +19,7 @@
       </a>
     </div>
     <div class="item">
-      <a>
+      <a (click)="$Filter('fashion')">
         <img
           src="https://rukminim1.flixcart.com/flap/128/128/image/82b3ca5fb2301045.png?q=100"
           alt=""
@@ -28,13 +28,13 @@
       </a>
     </div>
     <div class="item">
-      <a>
+      <a (click)="$Filter('jewelery')">
         <img
           style="width: 62px; margin-top: 5px"
           src="https://rukminim1.flixcart.com/image/580/696/kkh6zrk0/jewellery-set/o/w/z/gt-ns-862-matushri-art-original-imafzt9teacakjyn.jpeg?q=50"
           alt=""
         />
-        <h6>Jewllery</h6>
+        <h6>others</h6>
       </a>
     </div>
   </div>
@@ -44,7 +44,7 @@
   <div class="row">
     <ng-container
       *ngFor="
-        let item of productList | filter: searchKey:'title';
+        let item of filterCategory | filter: searchKey:'title';
         let i = index
       "
     >

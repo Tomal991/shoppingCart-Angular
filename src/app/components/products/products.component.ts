@@ -13,6 +13,10 @@ export class ProductsComponent implements OnInit {
   public productList: any;
   searchKey: string = '';
   AddToCartButton: string = 'Add to cart';
+  public filterCategory: any;
+  // private labelStates = ['Edit', 'Save'];
+  // public label: string = this.labelStates[0];
+
   constructor(
     private apiService: ApiService,
     private cartService: CartService
@@ -21,7 +25,16 @@ export class ProductsComponent implements OnInit {
   ngOnInit(): void {
     this.apiService.getProducts().subscribe((res: any) => {
       this.productList = res;
+      this.filterCategory = res;
+
       this.productList.forEach((a: any) => {
+        if (
+          a.category === "women's clothing" ||
+          a.category === "men's clothing"
+        ) {
+          a.category ='fashion';
+        }
+
         Object.assign(a, { quantity: 1, total: a.price });
       });
     });
@@ -29,18 +42,23 @@ export class ProductsComponent implements OnInit {
       this.searchKey = val;
     });
   }
+  // another() {
+  //   let index = +(this.label === this.labelStates[0]);
+  //   this.label = this.labelStates[index];
+  // }
 
   $AddToCartButton_click(item: any) {
-    if(this.AddToCartButton==="Add to cart"){
-      this.AddToCartButton=`added`;
-    }
-    else{
-      this.AddToCartButton="Add to cart"
-    }
-    
+    this.AddToCartButton = 'Added to cart';
     this.cartService.addToCart(item);
   }
 
+  $Filter(category: string) {
+    this.filterCategory = this.productList.filter((a: any) => {
+      if (a.category == category || category == '') {
+        return a;
+      }
+    });
+  }
 
   //All Public Method goes here
 }
