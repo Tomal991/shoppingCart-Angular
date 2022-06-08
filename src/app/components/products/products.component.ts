@@ -28,6 +28,7 @@ export class ProductsComponent implements OnInit {
       this.productList = res;
       this.filterCategory = res;
 
+      //make two categories into one
       this.productList.forEach((a: any) => {
         if (
           a.category === "women's clothing" ||
@@ -36,6 +37,7 @@ export class ProductsComponent implements OnInit {
           a.category = 'fashion';
         }
 
+        ///create property in the object
         Object.assign(a, {
           quantity: 1,
           total: a.price,
@@ -44,15 +46,14 @@ export class ProductsComponent implements OnInit {
         });
       });
     });
+
+    //search
     this.cartService.search.subscribe((val) => {
       this.searchKey = val;
     });
   }
-  // another() {
-  //   let index = +(this.label === this.labelStates[0]);
-  //   this.label = this.labelStates[index];
-  // }
 
+  //add to cart or remove
   $AddToCartButton_click(item: any) {
     item.toggle = !item.toggle;
     if (item.toggle) {
@@ -64,6 +65,7 @@ export class ProductsComponent implements OnInit {
     }
   }
 
+  //
   $Filter(category: string) {
     this.filterCategory = this.productList.filter((a: any) => {
       if (a.category == category || category == '') {

@@ -55,14 +55,14 @@
                   min="0"
                   [(ngModel)]="item.quantity"
                   name="quantity"
-                  (change)="changeGrandTotal()"
+                  (change)="$ChangeGrandTotal()"
                 />
               </td>
               <td style="width: 12%">
                 {{ item.quantity * item.price | currency }}
               </td>
               <td>
-                <button class="btn btn-danger" (click)="removeItem(item)">
+                <button class="btn btn-danger" (click)="$RemoveItem(item)">
                   <i class="fas fa-trash-alt"></i>
                 </button>
               </td>
@@ -71,7 +71,7 @@
             <tr>
               <td>
                 <app-button
-                  (btnClick)="emptyCart()"
+                  (btnClick)="$EmptyCart()"
                   text="Empty Cart"
                   class="btn btn-danger"
                   [isDisabled]="false"

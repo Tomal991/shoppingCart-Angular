@@ -19,14 +19,14 @@ export class CartComponent implements OnInit {
     });
   }
 
-  removeItem(item: any) {
+  $RemoveItem(item: any) {
     this.cartService.removeCartitem(item);
   }
-  emptyCart() {
+  $EmptyCart() {
     this.cartService.removeAllCart();
   }
 
-  changeGrandTotal(){
+  $ChangeGrandTotal(){
     this.grandTotal = this.cartService.getTotalPrice();
   }
 }
