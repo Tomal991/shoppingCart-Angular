@@ -62,13 +62,9 @@
         </p>
         <p><strong>Price:</strong> ${{ item.price }}</p>
 
-        <app-button
-          class="btn"
-          [text]="AddToCartButton"
-          id="`{{ i }}_addToCartButton`"
-          (click)="$AddToCartButton_click(item)"
-        >
-        </app-button>
+        <button class="btn" (click)="$AddToCartButton_click(item)">
+          {{ item.status }}
+        </button>
       </div>
     </ng-container>
   </div>

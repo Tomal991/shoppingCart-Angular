@@ -12,6 +12,7 @@ import { ApiService } from './../../service/api.service';
 export class ProductsComponent implements OnInit {
   public productList: any;
   searchKey: string = '';
+  toggle = true;
   AddToCartButton: string = 'Add to cart';
   public filterCategory: any;
   // private labelStates = ['Edit', 'Save'];
@@ -32,10 +33,15 @@ export class ProductsComponent implements OnInit {
           a.category === "women's clothing" ||
           a.category === "men's clothing"
         ) {
-          a.category ='fashion';
+          a.category = 'fashion';
         }
 
-        Object.assign(a, { quantity: 1, total: a.price });
+        Object.assign(a, {
+          quantity: 1,
+          total: a.price,
+          toggle: false,
+          status: 'Add to cart',
+        });
       });
     });
     this.cartService.search.subscribe((val) => {
@@ -48,8 +54,14 @@ export class ProductsComponent implements OnInit {
   // }
 
   $AddToCartButton_click(item: any) {
-    this.AddToCartButton = 'Added to cart';
-    this.cartService.addToCart(item);
+    item.toggle = !item.toggle;
+    if (item.toggle) {
+      item.status = 'Added';
+      this.cartService.addToCart(item);
+    } else {
+      item.status = 'Add to cart';
+      this.cartService.removeCartitem(item);
+    }
   }
 
   $Filter(category: string) {
