@@ -62,9 +62,7 @@
         </p>
         <p><strong>Price:</strong> ${{ item.price }}</p>
 
-        <button class="btn" (click)="$AddToCartButton_click(item)">
-          {{ item.status }}
-        </button>
+      <button (click)="setSaving($event.target, item.id);$AddToCartButton_click(item)" class="btn">Add to cart</button>
       </div>
     </ng-container>
   </div>

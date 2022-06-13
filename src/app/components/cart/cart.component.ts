@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/service/cart.service';
+import { SubSink } from 'subsink';
 
 @Component({
   selector: 'app-cart',
@@ -7,13 +8,14 @@ import { CartService } from 'src/app/service/cart.service';
   styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
-  products: any = [];
+  products: any[] = [];
   grandTotal: number = 0;
+  subsink = new SubSink();
 
   constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
-    this.cartService.getProducts().subscribe((res: any) => {
+    this.subsink.sink = this.cartService.getProducts().subscribe((res: any) => {
       this.products = res;
       this.grandTotal = this.cartService.getTotalPrice();
     });
@@ -26,7 +28,10 @@ export class CartComponent implements OnInit {
     this.cartService.removeAllCart();
   }
 
-  $ChangeGrandTotal(){
+  $ChangeGrandTotal() {
     this.grandTotal = this.cartService.getTotalPrice();
+  }
+  ngOnDestroy() {
+    this.subsink.unsubscribe();
   }
 }

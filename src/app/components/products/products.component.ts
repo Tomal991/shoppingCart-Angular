@@ -13,11 +13,12 @@ export class ProductsComponent implements OnInit {
   public productList: any;
   searchKey: string = '';
   toggle = true;
-  AddToCartButton: string = 'Add to cart';
   public filterCategory: any;
-  // private labelStates = ['Edit', 'Save'];
-  // public label: string = this.labelStates[0];
-
+  isAddedToCart: boolean = false;
+  status: string = 'Add to cart';
+  // public selectedIndex = -1;
+  public addedItems: any[] = [];
+  public addedItem: string = '';
   constructor(
     private apiService: ApiService,
     private cartService: CartService
@@ -41,8 +42,6 @@ export class ProductsComponent implements OnInit {
         Object.assign(a, {
           quantity: 1,
           total: a.price,
-          toggle: false,
-          status: 'Add to cart',
         });
       });
     });
@@ -52,20 +51,16 @@ export class ProductsComponent implements OnInit {
       this.searchKey = val;
     });
   }
-
+  setSaving(element: any, id: any) {
+    element.textContent = 'Added';
+    this.addedItems.push(id);
+    localStorage.setItem('addedItems', this.addedItems.toString());
+  }
   //add to cart or remove
   $AddToCartButton_click(item: any) {
-    item.toggle = !item.toggle;
-    if (item.toggle) {
-      item.status = 'Added';
-      this.cartService.addToCart(item);
-    } else {
-      item.status = 'Add to cart';
-      this.cartService.removeCartitem(item);
-    }
+    this.cartService.addToCart(item);
   }
 
-  //
   $Filter(category: string) {
     this.filterCategory = this.productList.filter((a: any) => {
       if (a.category == category || category == '') {
