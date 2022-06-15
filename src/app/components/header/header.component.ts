@@ -17,6 +17,9 @@ export class HeaderComponent implements OnInit {
     this.cartService.getProducts().subscribe((res: any) => {
       this.totalCartItem = res.length;
     });
+
+    // let existingData : any = localStorage.getItem('addedItems');
+    // this.totalCartItem = JSON.parse(existingData) == null?0:JSON.parse(existingData).length;
   }
 
   search(event: any) {

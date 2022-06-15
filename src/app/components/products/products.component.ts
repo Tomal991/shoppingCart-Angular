@@ -16,9 +16,10 @@ export class ProductsComponent implements OnInit {
   public filterCategory: any;
   isAddedToCart: boolean = false;
   status: string = 'Add to cart';
-  // public selectedIndex = -1;
+  increaseOrDecrease: boolean = false;
+
   public addedItems: any[] = [];
-  public addedItem: string = '';
+  public totalItem: number = 0;
   constructor(
     private apiService: ApiService,
     private cartService: CartService
@@ -51,14 +52,35 @@ export class ProductsComponent implements OnInit {
       this.searchKey = val;
     });
   }
-  setSaving(element: any, id: any) {
-    element.textContent = 'Added';
-    this.addedItems.push(id);
-    localStorage.setItem('addedItems', this.addedItems.toString());
-  }
-  //add to cart or remove
-  $AddToCartButton_click(item: any) {
+  $AddToCartButton_click(element: any, item: any, id: any) {
     this.cartService.addToCart(item);
+
+    this.increaseOrDecrease = true;
+
+    //  let existingData : any = localStorage.getItem('addedItems');
+    //  localStorage.removeItem('addedItems');
+    // let parsedExistingData: any[] = [];
+    // parsedExistingData = JSON.parse(existingData) == null?[]:JSON.parse(existingData);
+    // console.log(JSON.parse(existingData));
+    // if(!parsedExistingData.includes(id)){
+    //   parsedExistingData.push(id);
+    // }
+    this.addedItems.push(id);
+    console.log(id);
+
+    element.textContent = 'Added';
+    // element.parent().parent().addClass("hidden");
+
+    // this.increaseOrDecrease=true
+    // this.addedItems = parsedExistingData;
+    // localStorage.setItem('addedItems', JSON.stringify(this.addedItems));
+    // this.totalItem =  parsedExistingData.length;
+  }
+  $Increase(item: any) {
+    this.cartService.addToCart(item);
+  }
+  $Decrease(item: any) {
+    this.cartService.removeCartitem(item);
   }
 
   $Filter(category: string) {
@@ -68,6 +90,9 @@ export class ProductsComponent implements OnInit {
       }
     });
   }
+  // ngOnDestroy(){
+
+  // }
 
   //All Public Method goes here
 }

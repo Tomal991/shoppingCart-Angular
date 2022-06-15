@@ -62,7 +62,25 @@
         </p>
         <p><strong>Price:</strong> ${{ item.price }}</p>
 
-      <button (click)="setSaving($event.target, item.id);$AddToCartButton_click(item)" class="btn">Add to cart</button>
+        
+        <div>
+          <button
+          (click)="$AddToCartButton_click($event.target, item, item.id)"
+          class="btn"
+        >
+          Add to cart
+        </button>
+        </div>
+
+        <!-- <div>
+          <button *ngIf="increaseOrDecrease" (click)="$Increase(item)">+</button>
+        <button *ngIf="increaseOrDecrease" (click)="$Decrease(item)">-</button>
+        </div> -->
+        <div [ngClass]="addedItems.includes(item.id) ? '' : 'hidden' " >
+          <button *ngIf="increaseOrDecrease" (click)="$Increase(item)">+</button>
+        <button *ngIf="increaseOrDecrease" (click)="$Decrease(item)">-</button>
+        </div>
+        
       </div>
     </ng-container>
   </div>
