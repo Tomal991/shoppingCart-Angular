@@ -20,15 +20,6 @@ export class CartComponent implements OnInit {
       this.products = res;
       this.grandTotal = this.cartService.getTotalPrice();
     });
- 
-    // this.subsink.sink = this.apiService.getProducts().subscribe((res: any) => {
-    //   let existingData : any = localStorage.getItem('addedItems');
-    //   let parsedExistingData: any[] = [];
-    //   parsedExistingData = JSON.parse(existingData) == null?0:JSON.parse(existingData);
-
-    //   this.products = res.filter((item:any) => parsedExistingData.includes(item.id));
-    //   this.grandTotal = this.cartService.getTotalPrice();
-    // });
     
   }
 

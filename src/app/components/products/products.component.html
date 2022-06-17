@@ -62,25 +62,26 @@
         </p>
         <p><strong>Price:</strong> ${{ item.price }}</p>
 
-        
-        <div>
+        <div class="d-flex">
           <button
-          (click)="$AddToCartButton_click($event.target, item, item.id)"
-          class="btn"
-        >
-          Add to cart
-        </button>
+            (click)="$AddToCartButton_click($event.target, item, item.id)"
+            class="btn"
+          >
+            Add to cart
+          </button>
+          <div [ngClass]="addedItems.includes(item.id) ? '' : 'hidden'">
+            <button
+              (click)="$Increase(item)"
+              class="btn"
+              style="width: 50px; margin: 0px 10px"
+            >
+              +
+            </button>
+            <button (click)="$Decrease(item)" class="btn" style="width: 50px">
+              -
+            </button>
+          </div>
         </div>
-
-        <!-- <div>
-          <button *ngIf="increaseOrDecrease" (click)="$Increase(item)">+</button>
-        <button *ngIf="increaseOrDecrease" (click)="$Decrease(item)">-</button>
-        </div> -->
-        <div [ngClass]="addedItems.includes(item.id) ? '' : 'hidden' " >
-          <button *ngIf="increaseOrDecrease" (click)="$Increase(item)">+</button>
-        <button *ngIf="increaseOrDecrease" (click)="$Decrease(item)">-</button>
-        </div>
-        
       </div>
     </ng-container>
   </div>

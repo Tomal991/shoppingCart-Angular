@@ -1,8 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
+import { Product } from 'src/app/model/product';
 import { CartService } from 'src/app/service/cart.service';
 import { ApiService } from './../../service/api.service';
+import { PRODUCTS } from 'src/app/model/data';
 
 @Component({
   selector: 'app-products',
@@ -14,12 +16,11 @@ export class ProductsComponent implements OnInit {
   searchKey: string = '';
   toggle = true;
   public filterCategory: any;
-  isAddedToCart: boolean = false;
-  status: string = 'Add to cart';
-  increaseOrDecrease: boolean = false;
 
+  public cartItemList: any = [];
   public addedItems: any[] = [];
   public totalItem: number = 0;
+
   constructor(
     private apiService: ApiService,
     private cartService: CartService
@@ -52,35 +53,35 @@ export class ProductsComponent implements OnInit {
       this.searchKey = val;
     });
   }
+
+  // public products(): Product[] {
+  //   return PRODUCTS;
+  // }
+
   $AddToCartButton_click(element: any, item: any, id: any) {
     this.cartService.addToCart(item);
 
-    this.increaseOrDecrease = true;
-
-    //  let existingData : any = localStorage.getItem('addedItems');
-    //  localStorage.removeItem('addedItems');
-    // let parsedExistingData: any[] = [];
-    // parsedExistingData = JSON.parse(existingData) == null?[]:JSON.parse(existingData);
-    // console.log(JSON.parse(existingData));
-    // if(!parsedExistingData.includes(id)){
-    //   parsedExistingData.push(id);
-    // }
+    
+  
     this.addedItems.push(id);
     console.log(id);
 
-    element.textContent = 'Added';
-    // element.parent().parent().addClass("hidden");
+    element.textContent = `${item.quantity} in bag`;
 
-    // this.increaseOrDecrease=true
-    // this.addedItems = parsedExistingData;
-    // localStorage.setItem('addedItems', JSON.stringify(this.addedItems));
-    // this.totalItem =  parsedExistingData.length;
+    // if(item.quantity>0){
+    //   element.textContent = 'Added';
+    // }
+    // else{
+    //   element.textContent = 'Add to cart';
+    // }
+
+  
   }
   $Increase(item: any) {
     this.cartService.addToCart(item);
   }
   $Decrease(item: any) {
-    this.cartService.removeCartitem(item);
+    this.cartService.reduceQuantity(item);
   }
 
   $Filter(category: string) {

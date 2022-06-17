@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { CartService } from 'src/app/service/cart.service';
 
 @Component({
@@ -9,17 +10,16 @@ import { CartService } from 'src/app/service/cart.service';
 export class HeaderComponent implements OnInit {
   totalCartItem: number = 0;
   searchTerm: string = '';
-  totalAmount: any;
+  grandTotal: number = 0;
   // count:number=0;
   constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
     this.cartService.getProducts().subscribe((res: any) => {
       this.totalCartItem = res.length;
-    });
 
-    // let existingData : any = localStorage.getItem('addedItems');
-    // this.totalCartItem = JSON.parse(existingData) == null?0:JSON.parse(existingData).length;
+      this.grandTotal = this.cartService.getTotalPrice();
+    });
   }
 
   search(event: any) {

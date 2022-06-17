@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 
@@ -16,14 +16,8 @@ export class CartService {
     return this.productList.asObservable();
   }
 
-  // setProduct(product: any) {
-  //   this.cartItemList.push(...product);
-  //   this.productList.next(product);
-  // }
-
   addToCart(product: any) {
-    let productExists = false;
-
+    let productExists: boolean = false;
     for (let i in this.cartItemList) {
       if (this.cartItemList[i].id === product.id) {
         this.cartItemList[i].quantity++;
@@ -39,6 +33,17 @@ export class CartService {
 
       this.getTotalPrice();
       console.log(this.cartItemList);
+    }
+  }
+
+  reduceQuantity(product: any) {
+    let productExists: boolean = false;
+    for (let i in this.cartItemList) {
+      if (this.cartItemList[i].id === product.id) {
+        this.cartItemList[i].quantity--;
+        productExists = true;
+        break;
+      }
     }
   }
 

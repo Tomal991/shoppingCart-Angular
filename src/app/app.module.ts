@@ -10,6 +10,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ButtonComponent } from './components/button/button.component';
 import { FilterPipe } from './shared/filter.pipe';
+import { StoreModule } from '@ngrx/store';
+// import { shoppingReducer } from './store/shop.reducer';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,13 @@ import { FilterPipe } from './shared/filter.pipe';
     ButtonComponent,
     FilterPipe,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule,FormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    // StoreModule.forRoot({ shopping: shoppingReducer }),
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
