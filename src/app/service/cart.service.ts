@@ -23,14 +23,17 @@ export class CartService {
 
   addToCart(product:any) {
 
-    let productExists: boolean = false;
+    let productExists:boolean=false
+   
     for (let i in this.cartItemList) {
       if (this.cartItemList[i].id === product.id) {
         this.cartItemList[i].quantity++;
+        this.productList.next(this.cartItemList);
         productExists = true;
         break;
       }
     }
+  
 
     if (!productExists) {
       this.cartItemList.push(product);
@@ -40,6 +43,7 @@ export class CartService {
       this.getTotalPrice();
       console.log(this.cartItemList);
     }
+    
   }
 
   reduceQuantity(product: any) {
@@ -47,6 +51,7 @@ export class CartService {
     for (let i in this.cartItemList) {
       if (this.cartItemList[i].id === product.id) {
         this.cartItemList[i].quantity--;
+        this.productList.next(this.cartItemList);
         productExists = true;
         break;
       }

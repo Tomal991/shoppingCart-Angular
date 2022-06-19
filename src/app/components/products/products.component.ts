@@ -4,8 +4,9 @@ import { map } from 'rxjs/operators';
 // import { Product } from 'src/app/model/product';
 import { CartService } from 'src/app/service/cart.service';
 import { ApiService } from './../../service/api.service';
-import { PRODUCTS } from 'src/app/model/data';
-import { BehaviorSubject } from 'rxjs';
+// import { PRODUCTS } from 'src/app/model/data';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-products',
@@ -15,14 +16,13 @@ import { BehaviorSubject } from 'rxjs';
 export class ProductsComponent implements OnInit {
   public productLists: any;
   searchKey: string = '';
-  toggle = true;
   public filterCategory: any;
 
   public addedItems: any[] = [];
   public totalItem: number = 0;
 
-  public cartItemList: any = [];
-  public productList = new BehaviorSubject<any>([]);
+  // public cartItemList: any = [];
+  // public productList = new BehaviorSubject<any>([]);
 
   constructor(
     private apiService: ApiService,
@@ -60,13 +60,14 @@ export class ProductsComponent implements OnInit {
   // public products(): Product[] {
   //   return PRODUCTS;
   //   // }
- 
+
   $AddToCartButton_click(element: any, item: any, id: any) {
     this.cartService.addToCart(item);
+
     this.addedItems.push(id);
     console.log(id);
 
-    element.textContent = `${item.quantity} in bag`;
+    element.textContent = `Added in bag`;
   }
 
   $Increase(item: any) {
