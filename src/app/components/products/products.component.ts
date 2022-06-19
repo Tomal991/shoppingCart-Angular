@@ -1,10 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
-import { Product } from 'src/app/model/product';
+// import { Product } from 'src/app/model/product';
 import { CartService } from 'src/app/service/cart.service';
 import { ApiService } from './../../service/api.service';
 import { PRODUCTS } from 'src/app/model/data';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-products',
@@ -12,14 +13,16 @@ import { PRODUCTS } from 'src/app/model/data';
   styleUrls: ['./products.component.css'],
 })
 export class ProductsComponent implements OnInit {
-  public productList: any;
+  public productLists: any;
   searchKey: string = '';
   toggle = true;
   public filterCategory: any;
 
-  public cartItemList: any = [];
   public addedItems: any[] = [];
   public totalItem: number = 0;
+
+  public cartItemList: any = [];
+  public productList = new BehaviorSubject<any>([]);
 
   constructor(
     private apiService: ApiService,
@@ -28,11 +31,11 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit(): void {
     this.apiService.getProducts().subscribe((res: any) => {
-      this.productList = res;
+      this.productLists = res;
       this.filterCategory = res;
 
-      //make two categories into one
-      this.productList.forEach((a: any) => {
+      // make two categories into one
+      this.productLists.forEach((a: any) => {
         if (
           a.category === "women's clothing" ||
           a.category === "men's clothing"
@@ -41,6 +44,7 @@ export class ProductsComponent implements OnInit {
         }
 
         ///create property in the object
+
         Object.assign(a, {
           quantity: 1,
           total: a.price,
@@ -53,30 +57,18 @@ export class ProductsComponent implements OnInit {
       this.searchKey = val;
     });
   }
-
   // public products(): Product[] {
   //   return PRODUCTS;
-  // }
-
+  //   // }
+ 
   $AddToCartButton_click(element: any, item: any, id: any) {
     this.cartService.addToCart(item);
-
-    
-  
     this.addedItems.push(id);
     console.log(id);
 
     element.textContent = `${item.quantity} in bag`;
-
-    // if(item.quantity>0){
-    //   element.textContent = 'Added';
-    // }
-    // else{
-    //   element.textContent = 'Add to cart';
-    // }
-
-  
   }
+
   $Increase(item: any) {
     this.cartService.addToCart(item);
   }
@@ -85,12 +77,13 @@ export class ProductsComponent implements OnInit {
   }
 
   $Filter(category: string) {
-    this.filterCategory = this.productList.filter((a: any) => {
+    this.filterCategory = this.productLists.filter((a: any) => {
       if (a.category == category || category == '') {
         return a;
       }
     });
   }
+
   // ngOnDestroy(){
 
   // }

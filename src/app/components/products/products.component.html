@@ -39,12 +39,12 @@
     </div>
   </div>
 </div>
-
+<!-- /| filter: searchKey:'title' -->
 <div class="container">
   <div class="row">
     <ng-container
       *ngFor="
-        let item of filterCategory | filter: searchKey:'title';
+        let item of filterCategory | filter: searchKey:'title' ;
         let i = index
       "
     >

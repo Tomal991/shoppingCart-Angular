@@ -1,13 +1,18 @@
 import { Injectable, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
+// import { Product } from '../model/product';
+// import { ShoppingItem } from '../model/shopping-item';
+import { Store } from '@ngrx/store';
+// import { AppState } from '../store/app-state';
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
   public cartItemList: any = [];
-  public productList = new BehaviorSubject<any>([]);
+ public productList = new BehaviorSubject<any>([]);
   public search = new BehaviorSubject<string>('');
 
   constructor(private http: HttpClient) {}
@@ -16,7 +21,8 @@ export class CartService {
     return this.productList.asObservable();
   }
 
-  addToCart(product: any) {
+  addToCart(product:any) {
+
     let productExists: boolean = false;
     for (let i in this.cartItemList) {
       if (this.cartItemList[i].id === product.id) {
