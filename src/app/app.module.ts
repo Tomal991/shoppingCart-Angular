@@ -12,7 +12,9 @@ import { ButtonComponent } from './components/button/button.component';
 import { FilterPipe } from './shared/filter.pipe';
 import { StoreModule } from '@ngrx/store';
 import { ProductCategoryComponent } from './components/product-category/product-category.component';
-
+import { CartSidebarComponent } from './components/cart-sidebar/cart-sidebar.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 
 @NgModule({
@@ -24,12 +26,15 @@ import { ProductCategoryComponent } from './components/product-category/product-
     ButtonComponent,
     FilterPipe,
     ProductCategoryComponent,
+    CartSidebarComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    BrowserAnimationsModule,
+    MatSidenavModule
     // StoreModule.forRoot({ shopping: ShoppingReducer }),
   ],
   providers: [],

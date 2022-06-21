@@ -1,17 +1,30 @@
+
 <div class="navbar navbar-dark bg-primary shadow-sm">
   <div class="navbar-brand d-flex align-items-center">
     <i style="font-size: 30px" class="fas fa-shipping-fast">&nbsp; </i>
     <strong style="font-size: 30px">shop</strong>
     <div class="form-group">
-      <input type="text" class="form-control" placeholder="search products" [(ngModel)]="searchTerm" (keyup)="search($event)"/>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="search products"
+        [(ngModel)]="searchTerm"
+        (keyup)="search($event)"
+      />
     </div>
-    <!-- <span class="fas fa-search search-icon"></span> -->
   </div>
-  <!-- <button class="btn btn-primary" routerLink="/cart">
+  <button class="btn btn-primary" (click)="sidenav.toggle()">
     <i style="font-size: 30px" class="fas fa-cart-plus"></i>
-    <div style="font-size: 12px" class="badge bg-danger">{{totalCartItem}} items</div>
-    <div style="font-size: 12px" class="badge bg-danger">{{grandTotal |currency}} </div>
-    
-  </button> -->
-
+    <div style="font-size: 12px" class="badge bg-danger">
+      {{ totalCartItem }} items
+    </div>
+    <div style="font-size: 12px" class="badge bg-danger">
+      {{ grandTotal | currency }}
+    </div>
+  </button>
 </div>
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #sidenav mode="over"><app-cart></app-cart> </mat-sidenav>
+
+  <mat-sidenav-content> </mat-sidenav-content>
+</mat-sidenav-container>
