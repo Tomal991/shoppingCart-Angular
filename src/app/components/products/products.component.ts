@@ -67,7 +67,7 @@ export class ProductsComponent implements OnInit {
     this.addedItems.push(id);
     console.log(id);
 
-    element.textContent = `Added in bag`;
+    element.textContent = `${item.quantity} in bag`;
   }
 
   $Increase(item: any) {

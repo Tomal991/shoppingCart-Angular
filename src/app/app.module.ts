@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { ButtonComponent } from './components/button/button.component';
 import { FilterPipe } from './shared/filter.pipe';
 import { StoreModule } from '@ngrx/store';
+import { ProductCategoryComponent } from './components/product-category/product-category.component';
 
 
 
@@ -22,6 +23,7 @@ import { StoreModule } from '@ngrx/store';
     ProductsComponent,
     ButtonComponent,
     FilterPipe,
+    ProductCategoryComponent,
   ],
   imports: [
     BrowserModule,

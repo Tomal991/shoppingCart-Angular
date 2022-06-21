@@ -1,4 +1,4 @@
-<div class="card-top container-fluid">
+<div class="card-top">
   <div class="container d-flex">
     <div class="item">
       <a (click)="$Filter('')">
@@ -44,11 +44,11 @@
   <div class="row">
     <ng-container
       *ngFor="
-        let item of filterCategory | filter: searchKey:'title' ;
+        let item of filterCategory | filter: searchKey:'title';
         let i = index
       "
     >
-      <div class="card col-md-3">
+      <div class="card col-xxl-2 col-lg-3">
         <img src="{{ item.image }}" alt="" />
         <h5
           style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis"
@@ -63,22 +63,29 @@
         <p><strong>Price:</strong> ${{ item.price }}</p>
 
         <div class="d-flex">
+          <div [ngClass]="addedItems.includes(item.id) ? '' : 'hidden'">
+            <button
+              (click)="$Decrease(item)"
+              class="btn"
+              style="width: 30px; padding: 5px; margin: 0px 8px"
+            >
+              -
+            </button>
+          </div>
           <button
             (click)="$AddToCartButton_click($event.target, item, item.id)"
-            class="btn"
+            class="btn w-100"
           >
-            Add to cart
+            <i class="fa-solid fa-bolt" style="margin-right: 8px"></i> Add to
+            cart
           </button>
           <div [ngClass]="addedItems.includes(item.id) ? '' : 'hidden'">
             <button
               (click)="$Increase(item)"
               class="btn"
-              style="width: 50px; margin: 0px 10px"
+              style="width: 30px; padding: 5px; margin-left: 8px"
             >
               +
-            </button>
-            <button (click)="$Decrease(item)" class="btn" style="width: 50px">
-              -
             </button>
           </div>
         </div>
