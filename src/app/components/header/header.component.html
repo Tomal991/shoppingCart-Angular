@@ -13,7 +13,7 @@
       />
     </div>
   </div>
-  <button class="btn btn-primary" (click)="sidenav.toggle()">
+  <button class="btn btn-primary" (click)="inputSideNav.toggle()">
     <i style="font-size: 30px" class="fas fa-cart-plus"></i>
     <div style="font-size: 12px" class="badge bg-danger">
       {{ totalCartItem }} items
@@ -23,8 +23,3 @@
     </div>
   </button>
 </div>
-<mat-sidenav-container class="example-container">
-  <mat-sidenav #sidenav mode="over"><app-cart></app-cart> </mat-sidenav>
-
-  <mat-sidenav-content> </mat-sidenav-content>
-</mat-sidenav-container>

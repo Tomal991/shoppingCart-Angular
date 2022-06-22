@@ -2,78 +2,70 @@
   <div class="container">
     <div class="card">
       <div class="card-title">My Cart</div>
-    </div>
 
-    <div class="center">
-      <img
-        src="https://rukminim1.flixcart.com/www/800/800/promos/16/05/2019/d438a32e-765a-4d8b-b4a6-520b560971e8.png?q=90"
-        alt=""
-      />
+      <div class="center">
+        <img
+          src="https://rukminim1.flixcart.com/www/800/800/promos/16/05/2019/d438a32e-765a-4d8b-b4a6-520b560971e8.png?q=90"
+          alt=""
+        />
 
-      <h4>Your cart is empty</h4>
-      <h5>Add item to it now</h5>
-
-      <button routerLink="/products" class="btn btn-primary">Shop now</button>
+        <h2>Your cart is empty</h2>
+        <h3>Start shopping</h3>
+      </div>
     </div>
   </div>
 </ng-container>
 
 <ng-container *ngIf="products.length > 0">
   <div class="container mt-5">
-    <div class="card-table">
-      <div class="cart-product">
-        <table class="table table-responsive">
-          <thead>
-            <tr>
-              <th>Product Name</th>
-              <th>Product Image</th>
-              <th>Price</th>
-              <th>Quantity</th>
-              <th>Total</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let item of products; let i = index">
-              <td>{{ item.title }}</td>
-              <td>
-                <img style="width: 30px" src="{{ item.image }}" alt="" />
-              </td>
-              <th style="width: 12%">{{ item.price }}</th>
-              <td style="width: 12%">
-                <input
-                  type="number"
-                  min="0"
-                  [(ngModel)]="item.quantity"
-                  name="quantity"
-                  (change)="$ChangeGrandTotal()"
-                />
-              </td>
-              <td style="width: 12%">
-                {{ item.quantity * item.price | currency }}
-              </td>
-              <td>
-                <button class="btn btn-danger" (click)="$RemoveItem(item)">
-                  <i class="fas fa-trash-alt"></i>
-                </button>
-              </td>
-            </tr>
+    <div class="cart-table">
+      <table class="table table-responsive">
+        <tbody>
+          <tr *ngFor="let item of products; let i = index">
+            <td class="product_title" style="width: 12%">{{ item.title }}</td>
+            <td>
+              <img style="width: 35px" src="{{ item.image }}" alt="" />
+            </td>
+            <td style="width: 25%">{{ item.price | currency }}</td>
+            <td style="width: 25%">
+              <input
+                type="number"
+                min="1"
+                max="50"
+                [(ngModel)]="item.quantity"
+                name="quantity"
+                class="input_quantity"
+                (change)="$ChangeGrandTotal()"
+              />
+            </td>
+            <th style="width: 25%">
+              {{ item.quantity * item.price | currency }}
+            </th>
+            <td>
+              <i
+                class="fa-solid fa-xmark delete_icon"
+                (click)="$RemoveItem(item)"
+              ></i>
+            </td>
+          </tr>
 
-            <tr>
-              <td>
-                <app-button
-                  (btnClick)="$EmptyCart()"
-                  text="Empty Cart"
-                  class="btn btn-danger"
-                  [isDisabled]="false"
-                ></app-button>
-              </td>
+          <tr>
+            <td>
+              <app-button
+                (btnClick)="$EmptyCart()"
+                text="Empty Cart"
+                class="btn btn-danger empty_cart"
+                [isDisabled]="false"
+              ></app-button>
+            </td>
 
-              <strong>Grand Total : {{ grandTotal | currency }}</strong>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+            <td>
+              Grand Total :
+              <strong>{{ grandTotal | currency }}</strong>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </ng-container>

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { MatSidenav } from '@angular/material/sidenav';
 import { Observable } from 'rxjs';
 import { CartService } from 'src/app/service/cart.service';
 
@@ -8,6 +9,9 @@ import { CartService } from 'src/app/service/cart.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
+
+  @Input()
+  inputSideNav!: MatSidenav;
   totalCartItem: number = 0;
   searchTerm: string = '';
   grandTotal: number = 0; 
