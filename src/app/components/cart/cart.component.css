@@ -17,14 +17,9 @@
   width: 100px;
   margin: 20px 0px;
 }
-.cart-table {
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 0.5rem;
-  margin-bottom: 40px;
-}
 
 .input_quantity {
-  width: 50px;
+  width: 40px;
 }
 
 .product_title {
@@ -37,4 +32,32 @@
   font-size: 20px;
   margin-bottom: 20px;
   font-weight: bold;
+}
+.title_price {
+  display: flex;
+  flex-direction: column;
+  width: 30px;
+}
+.price {
+  color: grey;
+  font-weight: 500;
+  font-size: 12px;
+}
+.total_price {
+  font-size: 12px;
+}
+
+.bottom {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  background-color: rgb(236, 223, 223);
+  width: 100%;
+}
+.grandTotal {
+  width: 150px;
+  height: 50px;
+  padding: 20px 50px;
+  background-color: rgb(221, 98, 98);
+  margin-right: 20px;
 }

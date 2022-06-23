@@ -1,8 +1,7 @@
 .example-sidenav {
   width: 350px;
   min-height: 100vh;
-  background-color: rgb(224, 214, 214);
+  background-color: white;
   position: fixed;
   margin-top: 64px;
-  overflow:scroll; 
 }
