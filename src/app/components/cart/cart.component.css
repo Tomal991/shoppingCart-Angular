@@ -23,15 +23,18 @@
 }
 
 .input_quantity {
-  width: 40px;
+  width: 50px;
 }
 
-.empty_cart{
-padding: none;
+.product_title {
+  font-size: 12px;
 }
-.product_title{
-font-size: 12px;
-}
-.delete_icon:hover{
+.delete_icon:hover {
   color: red;
+}
+.total_products {
+  font-size: 20px;
+  margin-bottom: 30px;
+
+  font-weight: bold;
 }

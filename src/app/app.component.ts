@@ -17,4 +17,5 @@ export class AppComponent implements OnInit {
   ngOnInit() {
       // this.shoppingItems$ = this.store.select(store => store.shopping);
   }
+  
 }

@@ -7,6 +7,8 @@ import { ApiService } from './../../service/api.service';
 // import { PRODUCTS } from 'src/app/model/data';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
+import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import { ProductDetailsComponent } from '../product-details/product-details.component';
 
 @Component({
   selector: 'app-products',
@@ -21,14 +23,18 @@ export class ProductsComponent implements OnInit {
   public addedItems: any[] = [];
   public totalItem: number = 0;
 
+  hoverIndex:any
   // public cartItemList: any = [];
   // public productList = new BehaviorSubject<any>([]);
 
-  constructor(
+  constructor(public dialog: MatDialog,
     private apiService: ApiService,
     private cartService: CartService
   ) {}
-
+  openDialog(item:any) {
+    const dialogConfig = new MatDialogConfig();
+    this.dialog.open(ProductDetailsComponent,item);
+  }
   ngOnInit(): void {
     this.apiService.getProducts().subscribe((res: any) => {
       this.productLists = res;
@@ -85,9 +91,17 @@ export class ProductsComponent implements OnInit {
     });
   }
 
+  public enter(i:any) {
+    this.hoverIndex = i;
+   }
+
+   public leave(i:any) {
+    this.hoverIndex = null;
+   }
   // ngOnDestroy(){
 
   // }
 
   //All Public Method goes here
 }
+

@@ -11,11 +11,10 @@ import { FormsModule } from '@angular/forms';
 import { ButtonComponent } from './components/button/button.component';
 import { FilterPipe } from './shared/filter.pipe';
 import { StoreModule } from '@ngrx/store';
-import { ProductCategoryComponent } from './components/product-category/product-category.component';
-import { CartSidebarComponent } from './components/cart-sidebar/cart-sidebar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSidenavModule} from '@angular/material/sidenav';
-
+import { ProductDetailsComponent } from './components/product-details/product-details.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -25,8 +24,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     ProductsComponent,
     ButtonComponent,
     FilterPipe,
-    ProductCategoryComponent,
-    CartSidebarComponent,
+    ProductDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +32,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatSidenavModule
+    MatSidenavModule,MatDialogModule
     // StoreModule.forRoot({ shopping: ShoppingReducer }),
   ],
   providers: [],
