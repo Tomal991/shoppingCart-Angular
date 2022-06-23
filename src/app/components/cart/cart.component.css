@@ -25,7 +25,7 @@
   width: 40px;
 }
 
-.product_title {
+.product_title_price {
   font-size: 11px;
 }
 .delete_icon:hover {
@@ -38,11 +38,7 @@
   background-color: rgb(189, 180, 180);
   padding: 20px;
 }
-.title_price {
-  display: flex;
-  flex-direction: column;
-  width: 30px;
-}
+
 .price {
   color: grey;
   font-weight: 500;
