@@ -19,19 +19,20 @@
 <ng-container *ngIf="products.length > 0">
   <div class="main">
     <div class="total_products">Total {{ products.length }} items</div>
-    <table class="table">
+    <table class="table table-responsive">
       <tbody>
         <tr *ngFor="let item of products; let i = index">
-          <td>
-            <img style="width: 40px" src="{{ item.image }}" alt="" />
-          </td>
-
-          <td class="product_title_price" style="width: 25%">
-            {{ item.title }}<br />
-            <span class="price">{{ item.price | currency }}</span>
+          <td style="width: 25%">
+            <img class="image" src="{{ item.image }}" alt="" />
           </td>
 
           <td style="width: 25%">
+            <span class="product_title_price">{{ item.title }}</span
+            ><br />
+            <span class="price">{{ item.price | currency }}</span>
+          </td>
+
+          <td style="width: 20%">
             <input
               type="number"
               min="1"
@@ -42,10 +43,10 @@
               (change)="$ChangeGrandTotal()"
             />
           </td>
-          <th style="width: 25%" class="total_price">
+          <th class="total_price" style="width: 20%">
             {{ item.quantity * item.price | currency }}
           </th>
-          <td>
+          <td style="width: 20%">
             <i
               class="fa-solid fa-xmark delete_icon"
               (click)="$RemoveItem(item)"
@@ -67,3 +68,4 @@
     ></app-button>
   </div>
 </ng-container>
+<!-- <button class="close">c</button> -->

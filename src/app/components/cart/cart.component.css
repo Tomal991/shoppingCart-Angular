@@ -63,3 +63,14 @@
   background-color: rgb(221, 98, 98);
   margin: 0 20px;
 }
+.image {
+  width: 40px;
+  height: 40px;
+  margin-left: 5px;
+}
+/* 
+.close{
+  position: absolute;
+  left: 0;
+
+} */
