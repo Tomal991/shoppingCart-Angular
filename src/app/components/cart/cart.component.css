@@ -19,7 +19,7 @@
 }
 
 .main {
-  margin-bottom: 100px;
+  margin-bottom: 150px;
 }
 .input_quantity {
   width: 40px;
@@ -54,6 +54,7 @@
   bottom: 0;
   background-color: rgb(236, 223, 223);
   width: 100%;
+  padding: 20px;
 }
 .grandTotal {
   width: 150px;
