@@ -21,8 +21,9 @@ export class HeaderComponent implements OnInit {
     this.cartService.getProducts().subscribe((res: any) => {
       this.totalCartItem = res.length;
 
-      this.grandTotal = this.cartService.getTotalPrice();
+      // this.grandTotal = this.cartService.getTotalPrice();
     });
+    
   }
 
   search(event: any) {

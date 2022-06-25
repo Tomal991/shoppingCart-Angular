@@ -16,7 +16,7 @@ import { Product } from 'src/app/model/product';
   styleUrls: ['./products.component.css'],
 })
 export class ProductsComponent implements OnInit {
-  public productLists: Product[]=[];
+   productLists: Product[]=[];
   searchKey: string = '';
   public filterCategory: any;
 
@@ -31,9 +31,9 @@ export class ProductsComponent implements OnInit {
     private apiService: ApiService,
     private cartService: CartService
   ) {}
-  openDialog() {
+  openDialog(item:any) {
     // const dialogConfig = new MatDialogConfig();
-    this.dialog.open(ProductDetailsComponent,{data:10});
+    this.dialog.open(ProductDetailsComponent,item);
   }
   ngOnInit(): void {
     // this.apiService.getProducts().subscribe((res: any) => {
@@ -44,8 +44,8 @@ export class ProductsComponent implements OnInit {
    
     // });
 
-this.productLists=this.apiService.getProducts()
-this.filterCategory=this.apiService.getProducts()
+this.productLists=this.apiService.getProducts();
+this.filterCategory=this.apiService.getProducts();
 this.productLists.forEach((a: any) => {
   if (
     a.category === "women's clothing" ||

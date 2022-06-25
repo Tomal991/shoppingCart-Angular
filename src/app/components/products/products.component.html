@@ -49,7 +49,7 @@
       "
     >
       <div
-        class="card col-xxl-2 col-lg-3"
+        class="card col-xl-2 col-md-3 col-sm-12"
         (mouseenter)="enter(i)"
         (mouseleave)="leave(i)"
       >
@@ -62,7 +62,7 @@
         </h5>
 
         <p *ngIf="hoverIndex != i"><strong>Price:</strong> ${{ item.price }}</p>
-        <button class="details" (click)="openDialog()" *ngIf="hoverIndex == i" >Details ></button>
+        <button class="details" (click)="openDialog(item)" *ngIf="hoverIndex == i" >Details ></button>
 
         <div class="d-flex">
           <div [ngClass]="addedItems.includes(item.id) ? '' : 'hidden'">
