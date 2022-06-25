@@ -1,8 +1,8 @@
 <app-header [inputSideNav]="sidenav"></app-header>
 
 <mat-sidenav-container class="example-container"[hasBackdrop]="false">
-  <mat-sidenav class="example-sidenav" #sidenav mode="over" position="end" 
-    ><app-cart></app-cart>
+  <mat-sidenav class="example-sidenav" #sidenav mode="over" position="end" opened
+    ><app-cart [inputSideNav]="sidenav"></app-cart>
   </mat-sidenav>
 
   <mat-sidenav-content> <router-outlet></router-outlet></mat-sidenav-content>

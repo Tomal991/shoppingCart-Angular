@@ -14,6 +14,11 @@ export class ApiService {
     new Product(3, 'polo shirt',109,'Your perfect pack for everyday use',"men's clothing",'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg'),
     new Product(4, 'polo shirt',109,'Your perfect pack for everyday use',"men's clothing",'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg'),
     new Product(5, 'polo shirt',109,'Your perfect pack for everyday use',"men's clothing",'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg'),
+    new Product(6, 'polo shirt',109,'Your perfect pack for everyday use',"men's clothing",'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg'),
+    new Product(7, 'polo shirt',109,'Your perfect pack for everyday use',"men's clothing",'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg'),
+    new Product(8, 'polo shirt',109,'Your perfect pack for everyday use',"men's clothing",'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg'),
+    new Product(9, 'polo shirt',109,'Your perfect pack for everyday use',"men's clothing",'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg'),
+    new Product(10, 'polo shirt',109,'Your perfect pack for everyday use',"men's clothing",'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg'),
    
     
   ];

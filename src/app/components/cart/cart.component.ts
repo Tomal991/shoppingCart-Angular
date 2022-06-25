@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { MatSidenav } from '@angular/material/sidenav';
 import { ApiService } from 'src/app/service/api.service';
 import { CartService } from 'src/app/service/cart.service';
 import { SubSink } from 'subsink';
@@ -12,7 +13,8 @@ export class CartComponent implements OnInit {
   products: any[] = [];
   grandTotal: number = 0;
   subsink = new SubSink();
-
+  @Input()
+  inputSideNav!: MatSidenav;
   constructor(private cartService: CartService,private apiService: ApiService,) {}
 
   ngOnInit(): void {
