@@ -9,14 +9,14 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import { ProductDetailsComponent } from '../product-details/product-details.component';
-
+import { Product } from 'src/app/model/product';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css'],
 })
 export class ProductsComponent implements OnInit {
-  public productLists: any;
+  public productLists: Product[]=[];
   searchKey: string = '';
   public filterCategory: any;
 
@@ -31,33 +31,36 @@ export class ProductsComponent implements OnInit {
     private apiService: ApiService,
     private cartService: CartService
   ) {}
-  openDialog(item:any) {
-    const dialogConfig = new MatDialogConfig();
-    this.dialog.open(ProductDetailsComponent,item);
+  openDialog() {
+    // const dialogConfig = new MatDialogConfig();
+    this.dialog.open(ProductDetailsComponent,{data:10});
   }
   ngOnInit(): void {
-    this.apiService.getProducts().subscribe((res: any) => {
-      this.productLists = res;
-      this.filterCategory = res;
+    // this.apiService.getProducts().subscribe((res: any) => {
+    //   this.productLists = res;
+    //   this.filterCategory = res;
 
-      // make two categories into one
-      this.productLists.forEach((a: any) => {
-        if (
-          a.category === "women's clothing" ||
-          a.category === "men's clothing"
-        ) {
-          a.category = 'fashion';
-        }
+    //   // make two categories into one
+   
+    // });
 
-        ///create property in the object
+this.productLists=this.apiService.getProducts()
+this.filterCategory=this.apiService.getProducts()
+this.productLists.forEach((a: any) => {
+  if (
+    a.category === "women's clothing" ||
+    a.category === "men's clothing"
+  ) {
+    a.category = 'fashion';
+  }
 
-        Object.assign(a, {
-          quantity: 1,
-          total: a.price,
-        });
-      });
-    });
+  ///create property in the object
 
+  Object.assign(a, {
+    quantity: 1,
+    total: a.price,
+  });
+});
     //search
     this.cartService.search.subscribe((val) => {
       this.searchKey = val;
