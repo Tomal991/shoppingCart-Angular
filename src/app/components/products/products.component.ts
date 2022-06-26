@@ -32,9 +32,10 @@ export class ProductsComponent implements OnInit {
     private apiService: ApiService,
     private cartService: CartService
   ) {}
-  openDialog(item: any) {
+  openDialog(data: any) {
     // const dialogConfig = new MatDialogConfig();
-    this.dialog.open(ProductDetailsComponent, item);
+    this.dialog.open(ProductDetailsComponent, {data:data});
+    // console.log(item)
   }
   ngOnInit(): void {
 

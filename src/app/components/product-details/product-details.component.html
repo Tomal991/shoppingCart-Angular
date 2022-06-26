@@ -1,4 +1,22 @@
+<div style="width: 800px; height: 700px; display: flex" class="mt-5">
+  <img
+    src="{{ products.image }}"
+    alt=""
+    style="height: 200px; width: 300px; margin-right: 80px"
+  />
+  <div>
+    <h1>
+      {{ products.title }}
+    </h1>
+    <h2>{{ products.category }}</h2>
+    <h3>{{ products.price | currency }}</h3>
 
+    <div class="d-flex">
+      <button class="btn btn-lg btn-primary">-</button>
+      <h2 class="mx-5">{{ products.quantity }} in bag</h2>
+      <button class="btn btn-lg btn-primary" (click)="$Increase()">+</button>
+    </div>
 
-
-<div >{{data?.title}}</div>
+    <h2 class="mt-5">{{ products.description }}</h2>
+  </div>
+</div>
