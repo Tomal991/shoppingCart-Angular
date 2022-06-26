@@ -23,6 +23,10 @@ export class ProductDetailsComponent implements OnInit {
     console.log(this.products);
   }
   $Increase() {
-    
+    this.products.quantity++
+  }
+  
+  $Decrease() {
+    this.products.quantity--;
   }
 }
