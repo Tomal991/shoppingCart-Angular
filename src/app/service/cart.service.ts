@@ -6,13 +6,12 @@ import { BehaviorSubject } from 'rxjs';
 import { Store } from '@ngrx/store';
 // import { AppState } from '../store/app-state';
 
-
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
   public cartItemList: any = [];
- public productList = new BehaviorSubject<any>([]);
+  public productList = new BehaviorSubject<any>([]);
   public search = new BehaviorSubject<string>('');
 
   constructor(private http: HttpClient) {}
@@ -21,19 +20,16 @@ export class CartService {
     return this.productList.asObservable();
   }
 
-  addToCart(product:any) {
+  addToCart(product: any) {
+    let productExists: boolean = false;
 
-    let productExists:boolean=false
-   
     for (let i in this.cartItemList) {
       if (this.cartItemList[i].id === product.id) {
         this.cartItemList[i].quantity++;
         this.productList.next(this.cartItemList);
         productExists = true;
-        break;
       }
     }
-  
 
     if (!productExists) {
       this.cartItemList.push(product);
@@ -43,7 +39,6 @@ export class CartService {
       this.getTotalPrice();
       console.log(this.cartItemList);
     }
-    
   }
 
   reduceQuantity(product: any) {
@@ -52,8 +47,6 @@ export class CartService {
       if (this.cartItemList[i].id === product.id) {
         this.cartItemList[i].quantity--;
         this.productList.next(this.cartItemList);
-        productExists = true;
-        break;
       }
     }
   }

@@ -60,4 +60,5 @@ margin-bottom: 6px;
 }
 .row{
   justify-content: center;
+  width: 100%;
 }

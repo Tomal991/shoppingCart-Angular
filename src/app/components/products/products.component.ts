@@ -7,7 +7,7 @@ import { ApiService } from './../../service/api.service';
 // import { PRODUCTS } from 'src/app/model/data';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ProductDetailsComponent } from '../product-details/product-details.component';
 import { Product } from 'src/app/model/product';
 @Component({
@@ -16,51 +16,45 @@ import { Product } from 'src/app/model/product';
   styleUrls: ['./products.component.css'],
 })
 export class ProductsComponent implements OnInit {
-   productLists: Product[]=[];
+  productLists: Product[] = [];
   searchKey: string = '';
   public filterCategory: any;
 
   public addedItems: any[] = [];
   public totalItem: number = 0;
 
-  hoverIndex:any
+  hoverIndex: any;
   // public cartItemList: any = [];
   // public productList = new BehaviorSubject<any>([]);
 
-  constructor(public dialog: MatDialog,
+  constructor(
+    public dialog: MatDialog,
     private apiService: ApiService,
     private cartService: CartService
   ) {}
-  openDialog(item:any) {
+  openDialog(item: any) {
     // const dialogConfig = new MatDialogConfig();
-    this.dialog.open(ProductDetailsComponent,item);
+    this.dialog.open(ProductDetailsComponent, item);
   }
   ngOnInit(): void {
-    // this.apiService.getProducts().subscribe((res: any) => {
-    //   this.productLists = res;
-    //   this.filterCategory = res;
 
-    //   // make two categories into one
-   
-    // });
+    this.productLists = this.apiService.getProducts();
+    this.filterCategory = this.apiService.getProducts();
+    this.productLists.forEach((a: any) => {
+      if (
+        a.category === "women's clothing" ||
+        a.category === "men's clothing"
+      ) {
+        a.category = 'fashion';
+      }
 
-this.productLists=this.apiService.getProducts();
-this.filterCategory=this.apiService.getProducts();
-this.productLists.forEach((a: any) => {
-  if (
-    a.category === "women's clothing" ||
-    a.category === "men's clothing"
-  ) {
-    a.category = 'fashion';
-  }
+      ///create property in the object
 
-  ///create property in the object
-
-  Object.assign(a, {
-    quantity: 1,
-    total: a.price,
-  });
-});
+      Object.assign(a, {
+        quantity: 1,
+        total: a.price,
+      });
+    });
     //search
     this.cartService.search.subscribe((val) => {
       this.searchKey = val;
@@ -94,17 +88,16 @@ this.productLists.forEach((a: any) => {
     });
   }
 
-  public enter(i:any) {
+  public enter(i: any) {
     this.hoverIndex = i;
-   }
+  }
 
-   public leave(i:any) {
+  public leave(i: any) {
     this.hoverIndex = null;
-   }
+  }
   // ngOnDestroy(){
 
   // }
 
   //All Public Method goes here
 }
-
