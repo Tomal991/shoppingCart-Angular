@@ -25,9 +25,10 @@ export class CartService {
 
     for (let i in this.cartItemList) {
       if (this.cartItemList[i].id === product.id) {
+        productExists = true;
         this.cartItemList[i].quantity++;
         this.productList.next(this.cartItemList);
-        productExists = true;
+        
       }
     }
 
@@ -42,7 +43,6 @@ export class CartService {
   }
 
   reduceQuantity(product: any) {
-    let productExists: boolean = false;
     for (let i in this.cartItemList) {
       if (this.cartItemList[i].id === product.id) {
         this.cartItemList[i].quantity--;
