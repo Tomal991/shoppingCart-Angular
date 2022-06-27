@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { ApiService } from './../../service/api.service';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Product } from 'src/app/model/product';
 import { CartService } from 'src/app/service/cart.service';
 @Component({
@@ -15,18 +15,19 @@ export class ProductDetailsComponent implements OnInit {
     private apiService: ApiService,
     private cartSevice: CartService,
     @Inject(MAT_DIALOG_DATA)
-    public data: Product
+    public data: Product,public dialogRef: MatDialogRef<ProductDetailsComponent>
   ) {}
 
   ngOnInit(): void {
     this.products = this.data;
     console.log(this.products);
   }
-  $Increase() {
-    this.products.quantity++
+  $Increase(product:any) {
+    this.cartSevice.addToCart(product)
+    
   }
   
-  $Decrease() {
-    this.products.quantity--;
+  $Decrease(product:any) {
+   this.cartSevice.reduceQuantity(product)
   }
 }

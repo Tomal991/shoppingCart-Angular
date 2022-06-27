@@ -1,4 +1,4 @@
-<div style="width: 800px; height: 600px; display: flex" class="mt-5">
+<div style="display: flex" class="mt-5">
   <img
     src="{{ products.image }}"
     alt=""
@@ -12,9 +12,9 @@
     <h3>{{ products.price | currency }}</h3>
 
     <div class="d-flex">
-      <button class="btn btn-lg btn-primary" (click)="$Decrease()">-</button>
+      <button class="btn btn-lg btn-primary" (click)="$Decrease(products)">-</button>
       <h2 class="mx-5">{{ products.quantity }} in bag</h2>
-      <button class="btn btn-lg btn-primary" (click)="$Increase()">+</button>
+      <button class="btn btn-lg btn-primary" (click)="$Increase(products)">+</button>
     </div>
 
     <h2 class="mt-5">{{ products.description }}</h2>

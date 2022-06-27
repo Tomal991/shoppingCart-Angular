@@ -32,13 +32,8 @@ export class ProductsComponent implements OnInit {
     private apiService: ApiService,
     private cartService: CartService
   ) {}
-  openDialog(data: any) {
-    // const dialogConfig = new MatDialogConfig();
-    this.dialog.open(ProductDetailsComponent, {data:data});
-    // console.log(item)
-  }
-  ngOnInit(): void {
 
+  ngOnInit(): void {
     this.productLists = this.apiService.getProducts();
     this.filterCategory = this.apiService.getProducts();
     this.productLists.forEach((a: any) => {
@@ -64,6 +59,19 @@ export class ProductsComponent implements OnInit {
   // public products(): Product[] {
   //   return PRODUCTS;
   //   // }
+  $OpenDialog(
+    data: any,
+    enterAnimationDuration: string,
+    exitAnimationDuration: string
+  ):void {
+    const dialogConfig = new MatDialogConfig();
+    this.dialog.open(ProductDetailsComponent, {
+      data: data,
+      width: '800px',
+      height: '600px',
+    });
+    // console.log(item)
+  }
 
   $AddToCartButton_click(element: any, item: any, id: any) {
     this.cartService.addToCart(item);
