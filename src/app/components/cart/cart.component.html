@@ -40,7 +40,6 @@
               [(ngModel)]="item.quantity"
               name="quantity"
               class="input_quantity"
-             
               (change)="$ChangeGrandTotal()"
             />
           </td>
@@ -69,4 +68,6 @@
     ></app-button>
   </div>
 </ng-container>
-<button class="close" (click)="inputSideNav.toggle()"><i class="fa-solid fa-arrow-right"></i></button>
+<button class="close" (click)="inputSideNav.toggle()">
+  <i class="fa-solid fa-arrow-right"></i>
+</button>

@@ -49,10 +49,10 @@ export class CartService {
         this.cartItemList[i].quantity--;
         this.productList.next(this.cartItemList);
       }
-      if(this.cartItemList[i].quantity==0){
-        this.removeCartitem(i);
-        this.productList.next(this.cartItemList);
-      }
+      // if(this.cartItemList[i].quantity==0){
+      //   this.removeCartitem(i);
+      //   this.productList.next(this.cartItemList);
+      // }
     }
   }
 

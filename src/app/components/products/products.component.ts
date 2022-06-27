@@ -63,7 +63,7 @@ export class ProductsComponent implements OnInit {
     data: any,
     enterAnimationDuration: string,
     exitAnimationDuration: string
-  ):void {
+  ): void {
     const dialogConfig = new MatDialogConfig();
     this.dialog.open(ProductDetailsComponent, {
       data: data,
@@ -73,13 +73,13 @@ export class ProductsComponent implements OnInit {
     // console.log(item)
   }
 
-  $AddToCartButton_click(element: any, item: any, id: any) {
+  $AddToCartButton_click(item: any, id: any) {
     this.cartService.addToCart(item);
 
     this.addedItems.push(id);
     console.log(id);
 
-    element.textContent = `${item.quantity} in bag`;
+    // element.textContent = `${item.quantity} in bag`;
   }
 
   $Increase(item: any) {
