@@ -26,7 +26,7 @@ export class ProductsComponent implements OnInit {
   hoverIndex: any;
   // public cartItemList: any = [];
   // public productList = new BehaviorSubject<any>([]);
-
+check:any
   constructor(
     public dialog: MatDialog,
     private apiService: ApiService,
@@ -55,6 +55,10 @@ export class ProductsComponent implements OnInit {
     this.cartService.search.subscribe((val) => {
       this.searchKey = val;
     });
+    // this.cartService.getProducts().subscribe((data)=>{
+    // this.check=data
+    
+    // })
   }
   // public products(): Product[] {
   //   return PRODUCTS;
@@ -110,6 +114,8 @@ export class ProductsComponent implements OnInit {
   public leave(i: any) {
     this.hoverIndex = null;
   }
+
+ 
   // ngOnDestroy(){
 
   // }

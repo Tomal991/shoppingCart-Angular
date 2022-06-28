@@ -28,7 +28,6 @@ export class CartService {
         productExists = true;
         this.cartItemList[i].quantity++;
         this.productList.next(this.cartItemList);
-        
       }
     }
 
@@ -40,17 +39,15 @@ export class CartService {
       this.getTotalPrice();
       console.log(this.cartItemList);
     }
-   
   }
 
   reduceQuantity(product: any) {
     for (let i in this.cartItemList) {
       if (this.cartItemList[i].id === product.id) {
         this.cartItemList[i].quantity--;
-        this.productList.next(this.cartItemList);
-      }
-      if(this.cartItemList[i].quantity==0){
-        this.cartItemList=[]
+        if (this.cartItemList[i].quantity == 0) {
+          this.removeCartitem(product);
+        }
         this.productList.next(this.cartItemList);
       }
     }
