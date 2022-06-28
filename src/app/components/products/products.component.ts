@@ -74,11 +74,14 @@ export class ProductsComponent implements OnInit {
   }
 
   $AddToCartButton_click(item: any, id: any) {
-    this.cartService.addToCart(item);
+    
     if (item.quantity == 0) {
       item.quantity++;
     }
-
+    
+    this.cartService.addToCart(item);
+    
+   
     this.addedItems.push(id);
     console.log(id);
 

@@ -24,7 +24,9 @@ export class ProductDetailsComponent implements OnInit {
   }
   $Increase(product:any) {
     this.cartSevice.addToCart(product)
-    
+    if (product.quantity == 0) {
+      product.quantity++;
+    }
   }
   
   $Decrease(product:any) {
