@@ -86,16 +86,16 @@
             class="btn w-100"
           >
             <i
-              *ngIf="item.quantity == 1"
+              *ngIf="item.quantity == 0"
               class="fa-solid fa-bolt"
               style="margin-right: 8px"
             ></i>
             {{
               item.quantity == 1
-                ? "add To cart"
+                ? item.quantity+' in bag'
                 : item.quantity == 0
                 ? "add To cart"
-                : item.quantity
+                : item.quantity+' in bag'
             }}
           </button>
           <div [ngClass]="addedItems.includes(item.id) ? '' : 'hidden'">

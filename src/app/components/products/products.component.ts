@@ -47,7 +47,7 @@ export class ProductsComponent implements OnInit {
       ///create property in the object
 
       Object.assign(a, {
-        quantity: 1,
+        quantity: 0,
         total: a.price,
       });
     });
@@ -75,6 +75,9 @@ export class ProductsComponent implements OnInit {
 
   $AddToCartButton_click(item: any, id: any) {
     this.cartService.addToCart(item);
+    if (item.quantity == 0) {
+      item.quantity++;
+    }
 
     this.addedItems.push(id);
     console.log(id);
