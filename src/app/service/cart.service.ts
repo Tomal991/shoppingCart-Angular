@@ -4,6 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 // import { Product } from '../model/product';
 // import { ShoppingItem } from '../model/shopping-item';
 import { Store } from '@ngrx/store';
+import { Product } from '../model/product';
 // import { AppState } from '../store/app-state';
 
 @Injectable({
@@ -46,7 +47,7 @@ export class CartService {
       if (this.cartItemList[i].id === product.id) {
         this.cartItemList[i].quantity--;
         if (this.cartItemList[i].quantity == 0) {
-          this.removeCartitem(product);
+          this.removeCartItem(product);
         }
         this.productList.next(this.cartItemList);
       }
@@ -61,13 +62,14 @@ export class CartService {
     return grandTotal;
   }
 
-  removeCartitem(product: any) {
-    this.cartItemList.map((a: any, index: any) => {
-      if (product.id === a.id) {
-        this.cartItemList.splice(index, 1);
+  removeCartItem(product: any) {
+    for (let i in this.cartItemList) {
+      if (this.cartItemList[i].id === product.id) {
+        this.cartItemList[i].quantity = 0;
+        this.cartItemList.splice(i, 1);
       }
-      this.productList.next(this.cartItemList);
-    });
+    }
+    this.productList.next(this.cartItemList);
   }
 
   removeAllCart() {

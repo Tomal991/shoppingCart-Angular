@@ -26,7 +26,7 @@ export class ProductsComponent implements OnInit {
   hoverIndex: any;
   // public cartItemList: any = [];
   // public productList = new BehaviorSubject<any>([]);
-check:any
+  check: any = [];
   constructor(
     public dialog: MatDialog,
     private apiService: ApiService,
@@ -55,10 +55,6 @@ check:any
     this.cartService.search.subscribe((val) => {
       this.searchKey = val;
     });
-    // this.cartService.getProducts().subscribe((data)=>{
-    // this.check=data
-    
-    // })
   }
   // public products(): Product[] {
   //   return PRODUCTS;
@@ -68,7 +64,7 @@ check:any
     enterAnimationDuration: string,
     exitAnimationDuration: string
   ): void {
-    const dialogConfig = new MatDialogConfig();
+    // const dialogConfig = new MatDialogConfig();
     this.dialog.open(ProductDetailsComponent, {
       data: data,
       width: '800px',
@@ -78,14 +74,12 @@ check:any
   }
 
   $AddToCartButton_click(item: any, id: any) {
-    
     if (item.quantity == 0) {
       item.quantity++;
     }
-    
+
     this.cartService.addToCart(item);
-    
-   
+
     this.addedItems.push(id);
     console.log(id);
 
@@ -115,7 +109,6 @@ check:any
     this.hoverIndex = null;
   }
 
- 
   // ngOnDestroy(){
 
   // }
