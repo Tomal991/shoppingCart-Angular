@@ -84,6 +84,7 @@
           <button
             (click)="$AddToCartButton_click(item, item.id)"
             class="btn w-100"
+            [disabled]="item.quantity==50"
           >
             <i
               *ngIf="item.quantity == 0" 
@@ -102,6 +103,7 @@
               class="btn"
               style="width: 30px; padding: 5px; margin-left: 8px"
               [ngClass]="item.quantity == 0 ? 'hidden' : ''"
+              [disabled]="item.quantity==50"
             >
               +
             </button>
