@@ -15,7 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import {MatDialogModule} from '@angular/material/dialog';
-
+import {MatSliderModule} from '@angular/material/slider';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +32,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatSidenavModule,MatDialogModule
+    MatSidenavModule,MatDialogModule,MatSliderModule
     // StoreModule.forRoot({ shopping: ShoppingReducer }),
   ],
   providers: [],
