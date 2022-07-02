@@ -19,8 +19,12 @@
       >
         -
       </button>
-      <h2 class="mx-5">{{ products.quantity }} in bag</h2>
-      <button class="btn btn-lg btn-primary" (click)="$Increase(products)">
+      <h2 class="mx-5 w-100 quantity">{{ products.quantity }} in bag</h2>
+      <button
+        class="btn btn-lg btn-primary"
+        (click)="$Increase(products)"
+        [disabled]="products.quantity == 50"
+      >
         +
       </button>
     </div>

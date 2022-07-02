@@ -108,7 +108,20 @@ export class ProductsComponent implements OnInit {
   public leave(i: any) {
     this.hoverIndex = null;
   }
+  formatLabel(value: any) {
+    if (value >= 1000) {
+      return Math.round(value / 1000) + 'k';
+    }
 
+    return value;
+  }
+  onInputChange(event: any) {
+    this.filterCategory = this.productLists.filter((a: any) => {
+      if (a.price === event.value) {
+        return a;
+      }
+    });
+  }
   // ngOnDestroy(){
 
   // }
