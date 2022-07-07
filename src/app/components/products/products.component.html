@@ -1,113 +1,141 @@
 <div class="card-top">
   <div class="container d-flex">
-    <div class="item">
-      <a (click)="$Filter('')">
-        <img
-          src="https://rukminim1.flixcart.com/flap/128/128/image/f15c02bfeb02d15d.png?q=100"
-          alt=""
-        />
-        <h6>All products</h6>
-      </a>
-    </div>
-    <div class="item">
-      <a (click)="$Filter('electronics')">
-        <img
-          src="https://rukminim1.flixcart.com/flap/128/128/image/69c6589653afdb9a.png?q=100"
-          alt=""
-        />
-        <h6>Electronics</h6>
-      </a>
-    </div>
-    <div class="item">
-      <a (click)="$Filter('fashion')">
-        <img
-          src="https://rukminim1.flixcart.com/flap/128/128/image/82b3ca5fb2301045.png?q=100"
-          alt=""
-        />
-        <h6>Fashion</h6>
-      </a>
-    </div>
+    <ul class="top-level-menu" *ngFor="let cat of category; let i = index">
+      <li class="dropbtn" id="i">
+        <a  (click)="$Filter(cat.id)">{{ cat.title }}</a>
+        <ul class="second-level-menu">
+          <li *ngFor="let sub1 of subCategory1">
+            <a  (click)="$FilterSub1(sub1.title)">{{ sub1.categoryId === cat.id ? sub1.title : "" }}</a>
+            <ul class="third-level-menu">
+              <li *ngFor="let sub2 of subCategory2">
+                <a (click)="$FilterSub2(sub2.title)">{{
+                  sub2.subCategory1Id === sub1.id && sub2.categoryId === cat.id
+                    ? sub2.title
+                    : ""
+                }}</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
   </div>
 </div>
-<!-- /| filter: searchKey:'title' -->
 
-<mat-slider
-  thumbLabel
-  [displayWith]="formatLabel"
-  tickInterval="100"
-  step="50"
-  min="0"
-  max="1000"
-  aria-label="units"
-  (input)="onInputChange($event)"
-></mat-slider>
+<div class="d-flex products">
+  <div class="ms-3">
+    <h1>price Range</h1>
+    <mat-slider
+      thumbLabel
+      [displayWith]="formatLabel"
+      step="50"
+      min="0"
+      max="1000"
+      aria-label="units"
+      (change)="onSliderChange($event)"
+    ></mat-slider>
+    <br />
+    <br />
 
-<div class="container">
-  <div class="row">
-    <ng-container
-      *ngFor="
-        let item of filterCategory | filter: searchKey:'title';
-        let i = index
-      "
+    <mat-checkbox class="example-margin" (change)="$CheckboxFilter('')"
+      >All</mat-checkbox
     >
-      <div
-        class="card col-xl-2 col-md-3 col-sm-12"
-        (mouseenter)="enter(i)"
-        (mouseleave)="leave(i)"
+    <br />
+    <mat-checkbox class="example-margin" (click)="$CheckboxFilter('gucci')"
+      >gucci</mat-checkbox
+    >
+    <br />
+    <mat-checkbox class="example-margin" (change)="$CheckboxFilter('corsair')"
+      >corsair</mat-checkbox
+    >
+    <br />
+    <mat-checkbox class="example-margin" (click)="$CheckboxFilter('asus')"
+      >asus</mat-checkbox
+    >
+    <br />
+    <mat-checkbox class="example-margin" (change)="$CheckboxFilter('xiaomi')"
+      >xiaomi</mat-checkbox
+    >
+  </div>
+  <div class="container">
+    <div class="row">
+      <ng-container
+        *ngFor="
+          let item of filterProductLists | filter: searchKey:'title';
+          let i = index
+        "
       >
-        <img src="{{ item.image }}" alt="" />
-
-        <h5
-          style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis"
+        <div
+          class="card col-xl-2 col-md-3 col-sm-12"
+          (mouseenter)="enter(i)"
+          (mouseleave)="leave(i)"
         >
-          {{ item.title }}
-        </h5>
+          <img src="{{ item.image }}" alt="" />
 
-        <p *ngIf="hoverIndex != i"><strong>Price:</strong> ${{ item.price }}</p>
-        <button
-          class="details"
-          (click)="$OpenDialog(item, '3000ms', '1500ms')"
-          *ngIf="hoverIndex == i"
-        >
-          Details >
-        </button>
-
-        <div class="d-flex">
-          <div [ngClass]="addedItems.includes(item.id) ? '' : 'hidden'">
-            <button
-              (click)="$Decrease(item)"
-              class="btn"
-              style="width: 30px; padding: 5px; margin: 0px 8px"
-              [ngClass]="item.quantity == 0 ? 'hidden' : ''"
-            >
-              -
-            </button>
-          </div>
-          <button
-            (click)="$AddToCartButton_click(item, item.id)"
-            class="btn w-100"
-            [disabled]="item.quantity == 50"
+          <h5
+            style="
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            "
           >
-            <i
-              *ngIf="item.quantity == 0"
-              class="fa-solid fa-bolt"
-              style="margin-right: 8px"
-            ></i>
-            {{ item.quantity == 0 ? "add To cart" : item.quantity + " in bag" }}
+            {{ item.title }}
+          </h5>
+
+          <p *ngIf="hoverIndex != i">
+            <strong>Price:</strong> ${{ item.price }}
+          </p>
+          <button
+            class="details"
+            (click)="$OpenDialog(item, '3000ms', '1500ms')"
+            *ngIf="hoverIndex == i"
+          >
+            Details >
           </button>
-          <div [ngClass]="addedItems.includes(item.id) ? '' : 'hidden'">
+
+          <div class="d-flex">
+            <div
+             [ngClass]="addedItems.includes(item.id) ? '' : 'hidden'">
+              <button
+                (click)="$Decrease(item)"
+                class="btn"
+                style="width: 30px; padding: 5px; margin: 0px 8px"
+                [ngClass]="item.quantity == 0 ? 'hidden' : ''"
+              >
+                -
+              </button>
+            </div>
             <button
-              (click)="$Increase(item)"
-              class="btn"
-              style="width: 30px; padding: 5px; margin-left: 8px"
-              [ngClass]="item.quantity == 0 ? 'hidden' : ''"
+              (click)="$AddToCartButton_click(item, item.id)"
+              class="btn w-100"
               [disabled]="item.quantity == 50"
             >
-              +
+              <i
+                *ngIf="item.quantity == 0"
+                class="fa-solid fa-bolt"
+                style="margin-right: 8px"
+              ></i>
+              {{
+                item.quantity == 0 ? "add To cart" : item.quantity + " in bag"
+              }}
             </button>
+            <div [ngClass]="addedItems.includes(item.id) ? '' : 'hidden'">
+              <button
+                (click)="$Increase(item)"
+                class="btn"
+                style="width: 30px; padding: 5px; margin-left: 8px"
+                [ngClass]="item.quantity == 0 ? 'hidden' : ''"
+                [disabled]="item.quantity == 50"
+              >
+                +
+              </button>
+            </div>
           </div>
+          <button *ngIf="item.category.title == 'electronics'" class="compare">
+            Add to compare
+          </button>
         </div>
-      </div>
-    </ng-container>
+      </ng-container>
+    </div>
   </div>
 </div>

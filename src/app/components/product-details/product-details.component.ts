@@ -20,7 +20,7 @@ export class ProductDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.products = this.data;
-    console.log(this.products);
+   console.log(this.products)
   }
   $Increase(product:any) {
     this.cartSevice.addToCart(product)

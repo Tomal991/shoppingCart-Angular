@@ -10,6 +10,7 @@ import { Store } from '@ngrx/store';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ProductDetailsComponent } from '../product-details/product-details.component';
 import { Product } from 'src/app/model/product';
+
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -18,15 +19,15 @@ import { Product } from 'src/app/model/product';
 export class ProductsComponent implements OnInit {
   productLists: Product[] = [];
   searchKey: string = '';
-  public filterCategory: any;
+  public filterProductLists: any[] = [];
 
   public addedItems: any[] = [];
   public totalItem: number = 0;
 
   hoverIndex: any;
-  // public cartItemList: any = [];
-  // public productList = new BehaviorSubject<any>([]);
-  check: any = [];
+  category: any[] = [];
+  subCategory1: any[] = [];
+  subCategory2: any[] = [];
   constructor(
     public dialog: MatDialog,
     private apiService: ApiService,
@@ -35,15 +36,12 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit(): void {
     this.productLists = this.apiService.getProducts();
-    this.filterCategory = this.apiService.getProducts();
-    this.productLists.forEach((a: any) => {
-      if (
-        a.category === "women's clothing" ||
-        a.category === "men's clothing"
-      ) {
-        a.category = 'fashion';
-      }
+    this.filterProductLists = this.apiService.getProducts();
+    this.category = this.apiService.getCategories();
+    this.subCategory1 = this.apiService.getSubCategory1();
+    this.subCategory2 = this.apiService.getSubCategory2();
 
+    this.productLists.forEach((a: any) => {
       ///create property in the object
 
       Object.assign(a, {
@@ -56,15 +54,12 @@ export class ProductsComponent implements OnInit {
       this.searchKey = val;
     });
   }
-  // public products(): Product[] {
-  //   return PRODUCTS;
-  //   // }
+
   $OpenDialog(
     data: any,
     enterAnimationDuration: string,
     exitAnimationDuration: string
   ): void {
-    // const dialogConfig = new MatDialogConfig();
     this.dialog.open(ProductDetailsComponent, {
       data: data,
       width: '800px',
@@ -82,8 +77,6 @@ export class ProductsComponent implements OnInit {
 
     this.addedItems.push(id);
     console.log(id);
-
-    // element.textContent = `${item.quantity} in bag`;
   }
 
   $Increase(item: any) {
@@ -93,14 +86,38 @@ export class ProductsComponent implements OnInit {
     this.cartService.reduceQuantity(item);
   }
 
-  $Filter(category: string) {
-    this.filterCategory = this.productLists.filter((a: any) => {
-      if (a.category == category || category == '') {
+  $Filter(category: any) {
+    this.filterProductLists = this.productLists.filter((a: any) => {
+      if (a.category == category) {
         return a;
       }
     });
   }
-
+  $FilterSub1(category: any) {
+    this.filterProductLists = this.productLists.filter((a: any) => {
+      if (a.subCategory1 == category) {
+        return a;
+      }
+    });
+  }
+  $FilterSub2(category: any) {
+    this.filterProductLists = this.productLists.filter((a: any) => {
+      if (a.subCategory2 == category) {
+        console.log(a.subCategory2);
+        return a;
+      }
+    });
+  }
+  $CheckboxFilter(category: string) {
+    this.filterProductLists = this.productLists.filter((a: any) => {
+      if (
+        a.category.subCategory1.subCategory2.title == category ||
+        category == ''
+      ) {
+        return a;
+      }
+    });
+  }
   public enter(i: any) {
     this.hoverIndex = i;
   }
@@ -115,9 +132,10 @@ export class ProductsComponent implements OnInit {
 
     return value;
   }
-  onInputChange(event: any) {
-    this.filterCategory = this.productLists.filter((a: any) => {
-      if (a.price === event.value) {
+  onSliderChange(event: any) {
+    this.filterProductLists = this.productLists.filter((a: any) => {
+      if (a.price <= event.value) {
+        console.log(a);
         return a;
       }
     });

@@ -5,23 +5,15 @@
   min-width: 0;
   word-wrap: break-word; */
   margin-top: 64px;
+  padding-top: 20px;
   background: #fff;
   background-clip: border-box;
-  border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 0.25rem;
-}
-
-.item img {
-  width: 64px;
 }
 
 .item {
   margin: 0px 15px;
   text-align: center;
-}
-
-.item a:hover {
-  color: blue;
 }
 
 .card {
@@ -63,6 +55,98 @@
 }
 
 mat-slider {
-  
   width: 200px;
+}
+
+.compare {
+  border: none;
+  margin-top: 10px;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: white;
+}
+.compare:hover {
+  background-color: rgb(241, 233, 233);
+}
+.products {
+  margin-top: 40px;
+}
+
+/* menu */
+.third-level-menu {
+  position: absolute;
+  top: 0;
+  right: -150px;
+  width: 150px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: none;
+}
+
+.third-level-menu > li {
+  height: 30px;
+  background: #999999;
+}
+.third-level-menu > li:hover {
+  background: #cccccc;
+}
+
+.second-level-menu {
+  position: absolute;
+  top: 30px;
+  left: 0;
+  width: 150px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: none;
+}
+
+.second-level-menu > li {
+  position: relative;
+  height: 30px;
+  background: #999999;
+}
+.second-level-menu > li:hover {
+  background: #cccccc;
+}
+
+.top-level-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  z-index: 1;
+}
+
+.top-level-menu > li {
+  position: relative;
+  float: left;
+  height: 30px;
+  width: 150px;
+  background: #999999;
+}
+.top-level-menu > li:hover {
+  background: #cccccc;
+}
+
+.top-level-menu li:hover > ul {
+  /* On hover, display the next level's menu */
+  display: inline;
+}
+
+/* Menu Link Styles */
+
+.top-level-menu a /* Apply to all links inside the multi-level menu */ {
+  font: bold 14px Arial, Helvetica, sans-serif;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 0 0 0 10px;
+
+  /* Make the link cover the entire list item-container */
+  display: block;
+  line-height: 30px;
+}
+.top-level-menu a:hover {
+  color: #000000;
 }

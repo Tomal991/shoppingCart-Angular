@@ -16,6 +16,10 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSliderModule} from '@angular/material/slider';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MenuComponent } from './components/menu/menu.component';
+import { MatIconModule } from '@angular/material/icon'
+import {MatMenuModule} from '@angular/material/menu';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +29,7 @@ import {MatSliderModule} from '@angular/material/slider';
     ButtonComponent,
     FilterPipe,
     ProductDetailsComponent,
+    MenuComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,7 +37,7 @@ import {MatSliderModule} from '@angular/material/slider';
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatSidenavModule,MatDialogModule,MatSliderModule
+    MatSidenavModule,MatDialogModule,MatSliderModule,MatCheckboxModule,MatIconModule,MatMenuModule
     // StoreModule.forRoot({ shopping: ShoppingReducer }),
   ],
   providers: [],
