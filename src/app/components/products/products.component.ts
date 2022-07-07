@@ -88,31 +88,22 @@ export class ProductsComponent implements OnInit {
 
   $Filter(category: any) {
     this.filterProductLists = this.productLists.filter((a: any) => {
-      if (a.category == category) {
+      if (
+        a.category == category ||
+        a.subCategory1 == category ||
+        a.subCategory2 == category
+      ) {
         return a;
       }
     });
   }
-  $FilterSub1(category: any) {
-    this.filterProductLists = this.productLists.filter((a: any) => {
-      if (a.subCategory1 == category) {
-        return a;
-      }
-    });
-  }
-  $FilterSub2(category: any) {
-    this.filterProductLists = this.productLists.filter((a: any) => {
-      if (a.subCategory2 == category) {
-        console.log(a.subCategory2);
-        return a;
-      }
-    });
-  }
-  $CheckboxFilter(category: string) {
+
+  $CheckboxFilter(category: any) {
     this.filterProductLists = this.productLists.filter((a: any) => {
       if (
-        a.category.subCategory1.subCategory2.title == category ||
-        category == ''
+        a.category == category ||
+        a.subCategory1 == category ||
+        a.subCategory2 == category
       ) {
         return a;
       }

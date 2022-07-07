@@ -1,14 +1,16 @@
 <div class="card-top">
   <div class="container d-flex">
     <ul class="top-level-menu" *ngFor="let cat of category; let i = index">
-      <li class="dropbtn" id="i">
-        <a  (click)="$Filter(cat.id)">{{ cat.title }}</a>
+      <li>
+        <a (click)="$Filter(cat.title)">{{ cat.title }}</a>
         <ul class="second-level-menu">
           <li *ngFor="let sub1 of subCategory1">
-            <a  (click)="$FilterSub1(sub1.title)">{{ sub1.categoryId === cat.id ? sub1.title : "" }}</a>
+            <a (click)="$Filter(sub1.title)">{{
+              sub1.categoryId === cat.id ? sub1.title : ""
+            }}</a>
             <ul class="third-level-menu">
               <li *ngFor="let sub2 of subCategory2">
-                <a (click)="$FilterSub2(sub2.title)">{{
+                <a (click)="$Filter(sub2.title)">{{
                   sub2.subCategory1Id === sub1.id && sub2.categoryId === cat.id
                     ? sub2.title
                     : ""
@@ -37,25 +39,32 @@
     <br />
     <br />
 
-    <mat-checkbox class="example-margin" (change)="$CheckboxFilter('')"
-      >All</mat-checkbox
-    >
+    <h1>Category</h1>
+    <div *ngFor="let cat of category">
+      <mat-checkbox
+        class="example-margin"
+        (click)="$CheckboxFilter(cat.title)"
+        >{{ cat.title }}</mat-checkbox
+      >
+    </div>
     <br />
-    <mat-checkbox class="example-margin" (click)="$CheckboxFilter('gucci')"
-      >gucci</mat-checkbox
-    >
+    <h1>Product</h1>
+    <div *ngFor="let sub1 of subCategory1">
+      <mat-checkbox
+        class="example-margin"
+        (click)="$CheckboxFilter(sub1.title)"
+        >{{ sub1.title }}</mat-checkbox
+      >
+    </div>
     <br />
-    <mat-checkbox class="example-margin" (change)="$CheckboxFilter('corsair')"
-      >corsair</mat-checkbox
-    >
-    <br />
-    <mat-checkbox class="example-margin" (click)="$CheckboxFilter('asus')"
-      >asus</mat-checkbox
-    >
-    <br />
-    <mat-checkbox class="example-margin" (change)="$CheckboxFilter('xiaomi')"
-      >xiaomi</mat-checkbox
-    >
+    <h1>Brand</h1>
+    <div *ngFor="let sub2 of subCategory2">
+      <mat-checkbox
+        class="example-margin"
+        (click)="$CheckboxFilter(sub2.title)"
+        >{{ sub2.title }}</mat-checkbox
+      >
+    </div>
   </div>
   <div class="container">
     <div class="row">
@@ -94,8 +103,7 @@
           </button>
 
           <div class="d-flex">
-            <div
-             [ngClass]="addedItems.includes(item.id) ? '' : 'hidden'">
+            <div [ngClass]="addedItems.includes(item.id) ? '' : 'hidden'">
               <button
                 (click)="$Decrease(item)"
                 class="btn"

@@ -1,19 +1,9 @@
 .card-top {
-  /* position: relative;
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  word-wrap: break-word; */
-  margin-top: 64px;
-  padding-top: 20px;
+  margin: 64px 150px 50px 0;
+  padding-top: 30px;
   background: #fff;
   background-clip: border-box;
   border-radius: 0.25rem;
-}
-
-.item {
-  margin: 0px 15px;
-  text-align: center;
 }
 
 .card {
@@ -48,10 +38,6 @@
 }
 .details {
   margin-bottom: 6px;
-}
-.row {
-  justify-content: center;
-  /* width: 100%; */
 }
 
 mat-slider {
@@ -122,9 +108,10 @@ mat-slider {
 .top-level-menu > li {
   position: relative;
   float: left;
-  height: 30px;
+  height: 40px;
   width: 150px;
   background: #999999;
+  padding: 3px;
 }
 .top-level-menu > li:hover {
   background: #cccccc;

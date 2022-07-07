@@ -17,8 +17,8 @@ export class ApiService {
       description: 'Your perfect pack for everyday use',
       category: 'Component',
       image: 'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg',
-      subCategory1:'ram',
-      subCategory2:'corsair'
+      subCategory1: 'ram',
+      subCategory2: 'corsair',
     },
     {
       id: 2,
@@ -27,19 +27,39 @@ export class ApiService {
       description: 'Your perfect pack for everyday use',
       category: 'Component',
       image: 'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg',
-      subCategory1:'ram',
-      subCategory2:'gskill'
+      subCategory1: 'ram',
+      subCategory2: 'gskill',
     },
     {
       id: 3,
-      title: 'item3',
+      title: 'led tv dell',
       price: 300,
       description: 'Your perfect pack for everyday use',
-      category: "TV",
+      category: 'TV',
       image: 'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg',
-      subCategory1:'led',
-      subCategory2:'dell'
-    }, 
+      subCategory1: 'led',
+      subCategory2: 'dell',
+    },
+    {
+      id: 4,
+      title: '32gb ram corsair',
+      price: 400,
+      description: 'Your perfect pack for everyday use',
+      category: 'Component',
+      image: 'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg',
+      subCategory1: 'ram',
+      subCategory2: 'corsair',
+    },
+    {
+      id: 5,
+      title: 'samsung 250gb ssd',
+      price: 500,
+      description: 'Your perfect pack for everyday use',
+      category: 'Component',
+      image: 'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg',
+      subCategory1: 'ssd',
+      subCategory2: 'samsung',
+    },
     // {
     //   id: 4,
     //   title: '32 gb ram ven',
@@ -127,65 +147,77 @@ export class ApiService {
       id: 6,
       title: 'fashion',
     },
-
-  
+    {
+      id: 7,
+      title: 'Accessories',
+    },
+    {
+      id: 8,
+      title: 'Networking',
+    },
+    {
+      id: 9,
+      title: 'Security',
+    },
+    {
+      id: 10,
+      title: 'Others',
+    },
   ];
 
   subCategories1: SubCategory1[] = [
-
     {
-      id:1,
-      title:"ram",
-      categoryId:4
+      id: 1,
+      title: 'ram',
+      categoryId: 4,
     },
     {
-      id:2,
-      title:"ssd",
-      categoryId:4
+      id: 2,
+      title: 'ssd',
+      categoryId: 4,
     },
     {
-      id:3,
-      title:"processor",
-      categoryId:4
+      id: 3,
+      title: 'processor',
+      categoryId: 4,
     },
     {
-      id:4,
-      title:"led",
-      categoryId:3
-    }
+      id: 4,
+      title: 'led',
+      categoryId: 3,
+    },
   ];
   subCategories2: SubCategory2[] = [
-
     {
-      id:1,
-      title:"intel",
-      subCategory1Id:3,
-      categoryId:4
+      id: 1,
+      title: 'intel',
+      subCategory1Id: 3,
+      categoryId: 4,
     },
     {
-      id:2,
-      title:"corsair",
-      subCategory1Id:1,
-      categoryId:4
+      id: 2,
+      title: 'corsair',
+      subCategory1Id: 1,
+      categoryId: 4,
     },
     {
-      id:3,
-      title:"gskill",
-      subCategory1Id:1,
-      categoryId:4
+      id: 3,
+      title: 'gskill',
+      subCategory1Id: 1,
+      categoryId: 4,
     },
     {
-      id:4,
-      title:"samsung",
-      subCategory1Id:2,
-      categoryId:4
+      id: 4,
+      title: 'samsung',
+      subCategory1Id: 2,
+      categoryId: 4,
     },
     {
-      id:5,
-      title:"dell",
-      subCategory1Id:4,
-      categoryId:3
-    }
+      id: 5,
+      title: 'dell',
+      subCategory1Id: 4,
+      categoryId: 3,
+    },
   ];
   getProducts(): Product[] {
     return this.products;
@@ -197,7 +229,7 @@ export class ApiService {
   getSubCategory1(): SubCategory1[] {
     return this.subCategories1;
   }
-   getSubCategory2(): SubCategory2[] {
+  getSubCategory2(): SubCategory2[] {
     return this.subCategories2;
   }
 }
