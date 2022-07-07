@@ -10,6 +10,7 @@ import { Store } from '@ngrx/store';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ProductDetailsComponent } from '../product-details/product-details.component';
 import { Product } from 'src/app/model/product';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-products',
@@ -28,10 +29,13 @@ export class ProductsComponent implements OnInit {
   category: any[] = [];
   subCategory1: any[] = [];
   subCategory2: any[] = [];
+  // toppings = this._formBuilder.group({
+  //   pepperoni: false,
+  // });
   constructor(
     public dialog: MatDialog,
     private apiService: ApiService,
-    private cartService: CartService
+    private cartService: CartService,private _formBuilder: FormBuilder
   ) {}
 
   ngOnInit(): void {
@@ -40,7 +44,9 @@ export class ProductsComponent implements OnInit {
     this.category = this.apiService.getCategories();
     this.subCategory1 = this.apiService.getSubCategory1();
     this.subCategory2 = this.apiService.getSubCategory2();
-
+console.log(this.category)
+console.log(this.subCategory1)
+console.log(this.subCategory2)
     this.productLists.forEach((a: any) => {
       ///create property in the object
 

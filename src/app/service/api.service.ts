@@ -35,7 +35,7 @@ export class ApiService {
       title: 'led tv dell',
       price: 300,
       description: 'Your perfect pack for everyday use',
-      category: 'TV',
+      category: 'Monitor',
       image: 'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg',
       subCategory1: 'led',
       subCategory2: 'dell',

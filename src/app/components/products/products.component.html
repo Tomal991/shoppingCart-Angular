@@ -4,20 +4,27 @@
       <li>
         <a (click)="$Filter(cat.title)">{{ cat.title }}</a>
         <ul class="second-level-menu">
-          <li *ngFor="let sub1 of subCategory1">
-            <a (click)="$Filter(sub1.title)">{{
-              sub1.categoryId === cat.id ? sub1.title : ""
-            }}</a>
-            <ul class="third-level-menu">
-              <li *ngFor="let sub2 of subCategory2">
-                <a (click)="$Filter(sub2.title)">{{
-                  sub2.subCategory1Id === sub1.id && sub2.categoryId === cat.id
-                    ? sub2.title
-                    : ""
-                }}</a>
-              </li>
-            </ul>
-          </li>
+          <ng-container *ngFor="let sub1 of subCategory1">
+            <li *ngIf="sub1.categoryId === cat.id">
+              <a (click)="$Filter(sub1.title)">{{
+                sub1.categoryId === cat.id ? sub1.title : "null"
+              }}</a>
+              <ul class="third-level-menu">
+                <ng-container *ngFor="let sub2 of subCategory2">
+                  <li
+                    *ngIf="sub2.subCategory1Id === sub1.id && sub2.categoryId"
+                  >
+                    <a (click)="$Filter(sub2.title)">{{
+                      sub2.subCategory1Id === sub1.id &&
+                      sub2.categoryId === cat.id
+                        ? sub2.title
+                        : ""
+                    }}</a>
+                  </li>
+                </ng-container>
+              </ul>
+            </li>
+          </ng-container>
         </ul>
       </li>
     </ul>
