@@ -32,10 +32,12 @@ export class ProductsComponent implements OnInit {
   // toppings = this._formBuilder.group({
   //   pepperoni: false,
   // });
+  selectedCategory:any[]=[]
   constructor(
     public dialog: MatDialog,
     private apiService: ApiService,
-    private cartService: CartService,private _formBuilder: FormBuilder
+    private cartService: CartService,
+    private _formBuilder: FormBuilder
   ) {}
 
   ngOnInit(): void {
@@ -44,9 +46,7 @@ export class ProductsComponent implements OnInit {
     this.category = this.apiService.getCategories();
     this.subCategory1 = this.apiService.getSubCategory1();
     this.subCategory2 = this.apiService.getSubCategory2();
-console.log(this.category)
-console.log(this.subCategory1)
-console.log(this.subCategory2)
+
     this.productLists.forEach((a: any) => {
       ///create property in the object
 
@@ -104,16 +104,31 @@ console.log(this.subCategory2)
     });
   }
 
-  $CheckboxFilter(category: any) {
-    this.filterProductLists = this.productLists.filter((a: any) => {
-      if (
-        a.category == category ||
-        a.subCategory1 == category ||
-        a.subCategory2 == category
-      ) {
-        return a;
-      }
-    });
+  $CheckboxFilter(event: any, category: any) {
+  //   console.log(this.selectedCategory)
+  //   if (this.selectedCategory != undefined || this.selectedCategory.length> 0) {
+  
+  //     if(this.selectedCategory.includes(category)){
+  //     this.selectedCategory = this.selectedCategory.filter(function(e) { return e !== category })
+  //     }
+  //     else{
+  //       this.selectedCategory.push(category)
+  //     }
+  // }
+     this.filterProductLists = this.productLists;
+     console.log(this.productLists)
+
+    if (event.checked) {
+      this.filterProductLists = this.productLists.filter((a: any) => {
+        if (
+          a.category == category ||
+          a.subCategory1 == category ||
+          a.subCategory2 == category
+        ) {
+          return a;
+        }
+      });
+    }
   }
   public enter(i: any) {
     this.hoverIndex = i;

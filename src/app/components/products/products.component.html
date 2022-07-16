@@ -30,6 +30,9 @@
     </ul>
   </div>
 </div>
+<ng-container *ngFor="let sub of subCategory1">
+  <div *ngIf="filterProductLists!=productLists" >{{sub.title}}</div>
+</ng-container>
 
 <div class="d-flex products">
   <div class="ms-3">
@@ -50,7 +53,7 @@
     <div *ngFor="let cat of category">
       <mat-checkbox
         class="example-margin"
-        (click)="$CheckboxFilter(cat.title)"
+        (change)="$CheckboxFilter($event,cat.title)"
         >{{ cat.title }}</mat-checkbox
       >
     </div>
@@ -59,7 +62,7 @@
     <div *ngFor="let sub1 of subCategory1">
       <mat-checkbox
         class="example-margin"
-        (click)="$CheckboxFilter(sub1.title)"
+        (change)="$CheckboxFilter($event,sub1.title)"
         >{{ sub1.title }}</mat-checkbox
       >
     </div>
@@ -68,7 +71,7 @@
     <div *ngFor="let sub2 of subCategory2">
       <mat-checkbox
         class="example-margin"
-        (click)="$CheckboxFilter(sub2.title)"
+        (change)="$CheckboxFilter($event,sub2.title)"
         >{{ sub2.title }}</mat-checkbox
       >
     </div>
