@@ -9,7 +9,6 @@ Shopping Cart features-
 6)Add to Cart feature like Chaldal
 7)Dialog to see product description like Chaldal
 
-
 Concept of Angular used-
 Components (Product,Cart,Header,Button,Product Details)
 Service (Product Service and Cart Service)
